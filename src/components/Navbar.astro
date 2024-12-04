@@ -1,0 +1,24 @@
+---
+import Logo from "../assets/TEDxKMUTT_b.png";
+---
+
+<nav class="sticky top-0 flex justify-between items-center w-full p-6">
+    <img
+        id="background"
+        src={Logo.src}
+        alt=""
+        fetchpriority="high"
+        class="w-40"
+    />
+    <ul class="flex gap-10">
+        <li><a href="/">About event</a></li>
+        <li><a href="/">Speakers</a></li>
+        <li><a href="/about">Agenda</a></li>
+        <li><a href="/blog">FAQs</a></li>
+    </ul>
+    <button
+        class="button font-bold bg-primary-500 text-white px-4 py-2 rounded-full shadow-md"
+    >
+        Claim your tickets
+    </button>
+</nav>
