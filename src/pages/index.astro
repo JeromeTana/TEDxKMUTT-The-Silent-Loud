@@ -7,6 +7,7 @@ import SpeakerCard from "../components/SpeakerCard.astro";
 import Footer from "../components/Footer.astro";
 import { Icon } from "astro-icon/components";
 import Button from "../components/Button.astro";
+import AgendaLayout from "../components/AgendaLayout.astro";
 
 const mockSpeakerInfo = [
     {
@@ -80,6 +81,128 @@ const mockSpeakerInfo = [
         ],
     },
 ];
+
+const mockAgenda = [
+    {
+        time: "12:00",
+        title: "Registration",
+        description: "Get your name tags and find your seats",
+    },
+    {
+        title: "Section 1",
+        description: "Get your name tags and find your seats",
+        items: [
+            {
+                time: "12:30",
+                title: "First Talks",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                speaker: {
+                    name: "John Doe",
+                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+                },
+            },
+            {
+                time: "12:45",
+                title: "Second Talks",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                speaker: {
+                    name: "John Doe",
+                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+                },
+            },
+            {
+                time: "13:00",
+                title: "Third Talks",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                speaker: {
+                    name: "John Doe",
+                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+                },
+            },
+        ],
+    },
+    {
+        title: "Section 2",
+        description: "Get your name tags and find your seats",
+        items: [
+            {
+                time: "12:30",
+                title: "First Talks",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                speaker: {
+                    name: "John Doe",
+                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+                },
+            },
+            {
+                time: "12:45",
+                title: "Second Talks",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                speaker: {
+                    name: "John Doe",
+                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+                },
+            },
+            {
+                time: "13:00",
+                title: "Third Talks",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                speaker: {
+                    name: "John Doe",
+                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+                },
+            },
+        ],
+    },
+    {
+        title: "Section 3",
+        description: "Get your name tags and find your seats",
+        type: "group",
+        items: [
+            {
+                time: "12:30",
+                title: "First Talks",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                speaker: {
+                    name: "John Doe",
+                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+                },
+            },
+            {
+                time: "12:45",
+                title: "Second Talks",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                speaker: {
+                    name: "John Doe",
+                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+                },
+            },
+            {
+                time: "13:00",
+                title: "Third Talks",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                speaker: {
+                    name: "John Doe",
+                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+                },
+            },
+        ],
+    },
+    {
+        time: "17:00",
+        title: "Closing Ceremony",
+        description: "Thank you for joining us",
+    },
+];
 ---
 
 <Layout title="The Silent Loud · TEDxKMUTT">
@@ -130,9 +253,9 @@ const mockSpeakerInfo = [
             <SectionTitle
                 target="speakers"
                 title="Speakers"
-                subtitle="Meet the idea sharers"
+                subtitle="Meet the Idea Sharers"
             />
-            <div class="grid grid-cols-4 gap-2 mt-16">
+            <div class="grid grid-cols-4 gap-2">
                 {mockSpeakerInfo.map((speaker) => <SpeakerCard {...speaker} />)}
             </div>
         </Container>
@@ -142,6 +265,9 @@ const mockSpeakerInfo = [
                 title="Agenda"
                 subtitle="Amazing talks in a day"
             />
+            <div class="space-y-2">
+                {mockAgenda.map((agenda) => <AgendaLayout {...agenda} />)}
+            </div>
         </Container>
         <Container>
             <SectionTitle
