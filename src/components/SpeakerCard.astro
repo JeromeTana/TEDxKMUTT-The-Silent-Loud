@@ -1,0 +1,33 @@
+---
+interface Social {
+    title: string;
+    url: string;
+    icon: string;
+}
+
+interface Props {
+    name: string;
+    title: string;
+    image: string;
+    socials: Social[];
+}
+
+const { name, title, image, socials } = Astro.props;
+---
+
+<div class="card text-center">
+    <img src={image} alt="" />
+    <div>
+        <h3>{name}</h3>
+        <p>{title}</p>
+    </div>
+    <div>
+        {
+            socials.map((social) => (
+                <a href={social.url} class="button">
+                    {social.icon} {social.title}
+                </a>
+            ))
+        }
+    </div>
+</div>
