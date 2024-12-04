@@ -2,12 +2,13 @@
 interface Props {
     title: string;
     subtitle: string;
+    target: string;
 }
 
-const { title, subtitle } = Astro.props;
+const { title, subtitle, target } = Astro.props;
 ---
 
-<div class="text-center space-y-4">
+<div id={target} class="text-center space-y-4 pt-28">
     <div>
         <small class="p-2 text-primary-500 text-xl font-medium">{title}</small>
     </div>
