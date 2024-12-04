@@ -1,0 +1,24 @@
+---
+interface Props {
+    text: string;
+    description?: string;
+    variant: "primary" | "secondary";
+}
+
+const { text, description, variant } = Astro.props;
+
+const variantClasses = {
+    primary: "bg-primary-500 group-hover:bg-primary-600 text-white",
+    secondary:
+        "bg-white group-hover:bg-slate-200 text-primary-500 border border-slate-300",
+};
+---
+
+<div class="group flex flex-col gap-1">
+    <button
+        class={`button font-bold px-4 py-2 rounded-full duration-200 ${variantClasses[variant]}`}
+    >
+        {text}
+    </button>
+    <small class="text-slate-500">{description}</small>
+</div>
