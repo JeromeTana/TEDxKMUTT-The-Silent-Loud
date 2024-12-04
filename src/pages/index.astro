@@ -4,6 +4,9 @@ import Layout from "../layouts/Layout.astro";
 import Container from "../components/Container.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import SpeakerCard from "../components/SpeakerCard.astro";
+import Footer from "../components/Footer.astro";
+import { Icon } from "astro-icon/components";
+import Button from "../components/Button.astro";
 ---
 
 <Layout title="The Silent Loud · TEDxKMUTT">
@@ -16,16 +19,32 @@ import SpeakerCard from "../components/SpeakerCard.astro";
     <Navbar />
     <div class="max-w-md m-auto text-center">
         <img src="" alt="" class="bg-slate-500 w-full h-96" />
-        <div>
-            <p>dd month yyyy</p>
-            <p>KX Building, Floor 7 & 8</p>
+        <div class="flex flex-col items-center">
+            <div class="flex items-center gap-1">
+                <Icon name="mdi:calendar" />
+                <p>11 January 2025</p>
+            </div>
+            <div class="flex items-center gap-1">
+                <Icon name="mdi:map-marker" />
+                <p>KX Building, Floor 7 & 8</p>
+            </div>
         </div>
-        <div>
-            <button>Claim your ticket</button>
-            <button>Event agenda</button>
+        <div class="flex gap-2 justify-center items-start">
+            <a href="#">
+                <Button
+                    variant="primary"
+                    text="Claim your tickets"
+                    description="Only 300 tickets available"
+                />
+            </a>
+            <a href="#">
+                <Button variant="secondary" text="Event agenda" />
+            </a>
         </div>
     </div>
-    <div class="max-w-screen-2xl m-auto"><div class="h-[52rem] bg-slate-500"></div></div>
+    <div class="max-w-screen-2xl m-auto">
+        <div class="h-[52rem] bg-slate-500"></div>
+    </div>
     <Container>
         <SectionTitle title="About the event" subtitle="The Silent Loud" />
     </Container>
@@ -48,4 +67,5 @@ import SpeakerCard from "../components/SpeakerCard.astro";
     <Container>
         <SectionTitle title="FAQs" subtitle="Answers to your questions" />
     </Container>
+    <Footer />
 </Layout>
