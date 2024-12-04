@@ -1,13 +1,51 @@
 ---
 import Navbar from "../components/Navbar.astro";
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Container from "../components/Container.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import SpeakerCard from "../components/SpeakerCard.astro";
 ---
 
 <Layout title="The Silent Loud · TEDxKMUTT">
+    <div class="bg-primary-500 py-1 text-white">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quia
+        voluptate quibusdam reiciendis amet eius cumque ut deleniti beatae
+        possimus. Distinctio, tempora cumque. Officiis quam ad, debitis dicta
+        recusandae amet.
+    </div>
     <Navbar />
-    <Welcome />
+    <div class="max-w-md m-auto text-center">
+        <img src="" alt="" class="bg-slate-500 w-full h-96" />
+        <div>
+            <p>dd month yyyy</p>
+            <p>KX Building, Floor 7 & 8</p>
+        </div>
+        <div>
+            <button>Claim your ticket</button>
+            <button>Event agenda</button>
+        </div>
+    </div>
+    <div class="max-w-screen-2xl m-auto"><div class="h-[52rem] bg-slate-500"></div></div>
+    <Container>
+        <SectionTitle title="About the event" subtitle="The Silent Loud" />
+    </Container>
+    <Container>
+        <SectionTitle title="Speakers" subtitle="Meet the idea sharers" />
+        <SpeakerCard
+            name="John Doe"
+            title="CEO of Company"
+            image=""
+            socials={[
+                { title: "Facebook", url: "#", icon: "" },
+                { title: "Twitter", url: "#", icon: "" },
+                { title: "LinkedIn", url: "#", icon: "" },
+            ]}
+        />
+    </Container>
+    <Container>
+        <SectionTitle title="Agenda" subtitle="Amazing talks in a day" />
+    </Container>
+    <Container>
+        <SectionTitle title="FAQs" subtitle="Answers to your questions" />
+    </Container>
 </Layout>
