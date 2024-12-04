@@ -7,7 +7,9 @@ interface Props {
 const { title, subtitle } = Astro.props;
 ---
 
-<div class="text-center">
-    <small>{title}</small>
-    <h2>{subtitle}</h2>
+<div class="text-center space-y-4">
+    <div>
+        <small class="p-2 text-primary-500 text-xl font-medium">{title}</small>
+    </div>
+    <h2 class="text-7xl font-semibold">{subtitle}</h2>
 </div>
