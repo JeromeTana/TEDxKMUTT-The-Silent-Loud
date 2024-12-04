@@ -1,14 +1,15 @@
 ---
-import Logo from "../assets/TEDxKMUTT_b.png";
+import Logo from "../assets/logos/TEDxKMUTT_b.png";
+import NavLink from "./NavLink.astro";
 ---
 
 <nav class="sticky top-0 flex justify-between items-center w-full p-6 bg-white">
     <img id="logo" src={Logo.src} alt="" fetchpriority="high" class="w-40" />
     <ul class="flex gap-10 text-xl">
-        <li><a href="/">About event</a></li>
-        <li><a href="/">Speakers</a></li>
-        <li><a href="/about">Agenda</a></li>
-        <li><a href="/blog">FAQs</a></li>
+        <NavLink href="#about" text="About event" />
+        <NavLink href="#speakers" text="Speakers" />
+        <NavLink href="#agenda" text="Agenda" />
+        <NavLink href="#faqs" text="FAQs" />
     </ul>
     <button
         class="button font-bold bg-primary-500 hover:bg-primary-600 duration-200 text-white px-4 py-2 rounded-full"
