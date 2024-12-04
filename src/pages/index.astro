@@ -19,14 +19,14 @@ import Button from "../components/Button.astro";
     <Navbar />
     <div class="max-w-md m-auto text-center">
         <img src="" alt="" class="bg-slate-500 w-full h-96" />
-        <div class="flex flex-col items-center">
-            <div class="flex items-center gap-1">
-                <Icon name="mdi:calendar" />
-                <p>11 January 2025</p>
+        <div class="flex flex-col items-center gap-2 text-lg">
+            <div class="flex items-center gap-2">
+                <Icon name="mdi:calendar" class="text-primary-500" />
+                <p class="text-slate-700">11 January 2025</p>
             </div>
-            <div class="flex items-center gap-1">
-                <Icon name="mdi:map-marker" />
-                <p>KX Building, Floor 7 & 8</p>
+            <div class="flex items-center gap-2">
+                <Icon name="mdi:map-marker" class="text-primary-500" />
+                <p class="text-slate-700">KX Building, Floor 7 & 8</p>
             </div>
         </div>
         <div class="flex gap-2 justify-center items-start">
@@ -42,30 +42,32 @@ import Button from "../components/Button.astro";
             </a>
         </div>
     </div>
-    <div class="max-w-screen-2xl m-auto">
-        <div class="h-[52rem] bg-slate-500"></div>
+    <div class="space-y-60 my-20">
+        <div class="max-w-screen-2xl m-auto">
+            <div class="h-[52rem] bg-slate-500"></div>
+        </div>
+        <Container>
+            <SectionTitle title="About the event" subtitle="The Silent Loud" />
+        </Container>
+        <Container>
+            <SectionTitle title="Speakers" subtitle="Meet the idea sharers" />
+            <SpeakerCard
+                name="John Doe"
+                title="CEO of Company"
+                image=""
+                socials={[
+                    { title: "Facebook", url: "#", icon: "" },
+                    { title: "Twitter", url: "#", icon: "" },
+                    { title: "LinkedIn", url: "#", icon: "" },
+                ]}
+            />
+        </Container>
+        <Container>
+            <SectionTitle title="Agenda" subtitle="Amazing talks in a day" />
+        </Container>
+        <Container>
+            <SectionTitle title="FAQs" subtitle="Answers to your questions" />
+        </Container>
     </div>
-    <Container>
-        <SectionTitle title="About the event" subtitle="The Silent Loud" />
-    </Container>
-    <Container>
-        <SectionTitle title="Speakers" subtitle="Meet the idea sharers" />
-        <SpeakerCard
-            name="John Doe"
-            title="CEO of Company"
-            image=""
-            socials={[
-                { title: "Facebook", url: "#", icon: "" },
-                { title: "Twitter", url: "#", icon: "" },
-                { title: "LinkedIn", url: "#", icon: "" },
-            ]}
-        />
-    </Container>
-    <Container>
-        <SectionTitle title="Agenda" subtitle="Amazing talks in a day" />
-    </Container>
-    <Container>
-        <SectionTitle title="FAQs" subtitle="Answers to your questions" />
-    </Container>
     <Footer />
 </Layout>
