@@ -3,13 +3,7 @@ import Logo from "../assets/TEDxKMUTT_b.png";
 ---
 
 <nav class="sticky top-0 flex justify-between items-center w-full p-6">
-    <img
-        id="logo"
-        src={Logo.src}
-        alt=""
-        fetchpriority="high"
-        class="w-40"
-    />
+    <img id="logo" src={Logo.src} alt="" fetchpriority="high" class="w-40" />
     <ul class="flex gap-10">
         <li><a href="/">About event</a></li>
         <li><a href="/">Speakers</a></li>
@@ -17,7 +11,7 @@ import Logo from "../assets/TEDxKMUTT_b.png";
         <li><a href="/blog">FAQs</a></li>
     </ul>
     <button
-        class="button font-bold bg-primary-500 text-white px-4 py-2 rounded-full shadow-md"
+        class="button font-bold bg-primary-500 hover:bg-primary-600 duration-200 text-white px-4 py-2 rounded-full"
     >
         Claim your tickets
     </button>
