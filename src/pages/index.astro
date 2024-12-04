@@ -7,6 +7,79 @@ import SpeakerCard from "../components/SpeakerCard.astro";
 import Footer from "../components/Footer.astro";
 import { Icon } from "astro-icon/components";
 import Button from "../components/Button.astro";
+
+const mockSpeakerInfo = [
+    {
+        name: "John Doe",
+        title: "CEO of Company",
+        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        socials: [
+            { title: "Facebook", url: "#", icon: "mdi:facebook" },
+            { title: "Twitter", url: "#", icon: "mdi:twitter" },
+            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+        ],
+    },
+    {
+        name: "Jane Doe",
+        title: "CTO of Company",
+        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        socials: [
+            { title: "Facebook", url: "#", icon: "mdi:facebook" },
+            { title: "Twitter", url: "#", icon: "mdi:twitter" },
+            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+        ],
+    },
+    {
+        name: "John Smith",
+        title: "CFO of Company",
+        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        socials: [
+            { title: "Facebook", url: "#", icon: "mdi:facebook" },
+            { title: "Twitter", url: "#", icon: "mdi:twitter" },
+            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+        ],
+    },
+    {
+        name: "John Smith",
+        title: "CFO of Company",
+        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        socials: [
+            { title: "Facebook", url: "#", icon: "mdi:facebook" },
+            { title: "Twitter", url: "#", icon: "mdi:twitter" },
+            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+        ],
+    },
+    {
+        name: "John Smith",
+        title: "CFO of Company",
+        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        socials: [
+            { title: "Facebook", url: "#", icon: "mdi:facebook" },
+            { title: "Twitter", url: "#", icon: "mdi:twitter" },
+            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+        ],
+    },
+    {
+        name: "John Smith",
+        title: "CFO of Company",
+        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        socials: [
+            { title: "Facebook", url: "#", icon: "mdi:facebook" },
+            { title: "Twitter", url: "#", icon: "mdi:twitter" },
+            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+        ],
+    },
+    {
+        name: "John Smith",
+        title: "CFO of Company",
+        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        socials: [
+            { title: "Facebook", url: "#", icon: "mdi:facebook" },
+            { title: "Twitter", url: "#", icon: "mdi:twitter" },
+            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+        ],
+    },
+];
 ---
 
 <Layout title="The Silent Loud · TEDxKMUTT">
@@ -47,26 +120,35 @@ import Button from "../components/Button.astro";
             <div class="h-[52rem] bg-slate-500"></div>
         </div>
         <Container>
-            <SectionTitle title="About the event" subtitle="The Silent Loud" />
-        </Container>
-        <Container>
-            <SectionTitle title="Speakers" subtitle="Meet the idea sharers" />
-            <SpeakerCard
-                name="John Doe"
-                title="CEO of Company"
-                image=""
-                socials={[
-                    { title: "Facebook", url: "#", icon: "" },
-                    { title: "Twitter", url: "#", icon: "" },
-                    { title: "LinkedIn", url: "#", icon: "" },
-                ]}
+            <SectionTitle
+                target="about"
+                title="About the event"
+                subtitle="The Silent Loud"
             />
         </Container>
         <Container>
-            <SectionTitle title="Agenda" subtitle="Amazing talks in a day" />
+            <SectionTitle
+                target="speakers"
+                title="Speakers"
+                subtitle="Meet the idea sharers"
+            />
+            <div class="grid grid-cols-4 gap-2 mt-16">
+                {mockSpeakerInfo.map((speaker) => <SpeakerCard {...speaker} />)}
+            </div>
         </Container>
         <Container>
-            <SectionTitle title="FAQs" subtitle="Answers to your questions" />
+            <SectionTitle
+                target="agenda"
+                title="Agenda"
+                subtitle="Amazing talks in a day"
+            />
+        </Container>
+        <Container>
+            <SectionTitle
+                target="fags"
+                title="FAQs"
+                subtitle="Answers to your questions"
+            />
         </Container>
     </div>
     <Footer />
