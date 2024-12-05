@@ -9,6 +9,12 @@ export default {
                     600: "#C8001D",
                 },
             },
+            keyframes: {
+                marquee: {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(-50%)" },
+                },
+            },
         },
     },
     plugins: [],
