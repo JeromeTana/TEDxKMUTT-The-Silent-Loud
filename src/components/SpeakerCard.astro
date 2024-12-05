@@ -17,24 +17,26 @@ interface Props {
 const { name, title, image, socials } = Astro.props;
 ---
 
-<div class="card text-center p-8 border rounded-3xl space-y-8">
-    <div class="space-y-6">
-        <img src={image} alt="" class="rounded-full w-36 m-auto" />
-        <div class="mb-4 space-y-1">
+<div
+    class="card flex md:flex-col gap-6 items-start md:items-center md:text-center p-8 border rounded-3xl"
+>
+    <img src={image} alt="" class="rounded-full w-24 md:w-36 md:m-auto" />
+    <div class="flex flex-col items-start md:items-center gap-1">
+        <div class="mb-4">
             <h3 class="font-bold text-2xl">{name}</h3>
             <p class="text-primary-500">{title}</p>
         </div>
-    </div>
-    <div class="flex justify-center gap-2 text-2xl">
-        {
-            socials.map((social) => (
-                <a
-                    href={social.url}
-                    class="button hover:text-primary-500 duration-200"
-                >
-                    <Icon name={social.icon}>{social.icon}</Icon>
-                </a>
-            ))
-        }
+        <div class="flex justify-center gap-2 text-2xl">
+            {
+                socials.map((social) => (
+                    <a
+                        href={social.url}
+                        class="button hover:text-primary-500 duration-200"
+                    >
+                        <Icon name={social.icon}>{social.icon}</Icon>
+                    </a>
+                ))
+            }
+        </div>
     </div>
 </div>
