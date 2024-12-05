@@ -203,17 +203,66 @@ const mockAgenda = [
         description: "Thank you for joining us",
     },
 ];
+
+const mockFaqs = [
+    {
+        question: "What is the event about?",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+        question: "How can I join the event?",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+        question: "What is the event about?",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+        question: "What is the event about?",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+        question: "What is the event about?",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+        question: "What is the event about?",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+        question: "What is the event about?",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+        question: "What is the event about?",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullam",
+    },
+];
 ---
 
 <Layout title="The Silent Loud · TEDxKMUTT">
-    <div class="bg-primary-500 py-1 text-white">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quia
-        voluptate quibusdam reiciendis amet eius cumque ut deleniti beatae
-        possimus. Distinctio, tempora cumque. Officiis quam ad, debitis dicta
-        recusandae amet.
+    <div class="bg-primary-500 text-white py-2">
+        <div class="marquee h-6 relative w-[100vw] max-w-full overflow-hidden">
+            <div
+                class="track absolute whitespace-nowrap will-change-transform animate-[marquee_32s_linear_infinite]"
+            >
+                <div class="content">
+                    &nbsp;Infinite Marquee with long sentence Infinite Marquee
+                    with long sentence Infinite Marquee with long sentence
+                    Infinite Marquee with long sentence Infinite Marquee with
+                    long sentence&nbsp;Infinite Marquee with long sentence
+                    Infinite Marquee with long sentence Infinite Marquee with
+                    long sentence Infinite Marquee with long sentence Infinite
+                    Marquee with long sentence&nbsp;Infinite Marquee with long
+                    sentence Infinite Marquee with long sentence Infinite
+                    Marquee with long sentence Infinite Marquee with long
+                    sentence Infinite Marquee with long sentence
+                </div>
+            </div>
+        </div>
     </div>
     <Navbar />
-    <div class="max-w-md m-auto text-center">
+    <div class="max-w-md m-auto text-center space-y-8">
         <img src="" alt="" class="bg-slate-500 w-full h-96" />
         <div class="flex flex-col items-center gap-2 text-lg">
             <div class="flex items-center gap-2">
@@ -240,7 +289,7 @@ const mockAgenda = [
     </div>
     <div class="space-y-60 my-20">
         <div class="max-w-screen-2xl m-auto">
-            <div class="h-[52rem] bg-slate-500"></div>
+            <div class="h-[52rem] bg-slate-500 rounded-3xl p-2"></div>
         </div>
         <Container>
             <SectionTitle
@@ -275,7 +324,36 @@ const mockAgenda = [
                 title="FAQs"
                 subtitle="Answers to your questions"
             />
+            <div class="max-w-screen-lg m-auto space-y-2">
+                {
+                    mockFaqs.map((faq, index) => (
+                        <div class="overflow-clip cursor-pointer rounded-xl">
+                            <button class="accordion bg-slate-200 text-gray-700 p-6 w-full border-none text-left outline-none text-xl transition duration-200 hover:bg-slate-300">
+                                {faq.question}
+                            </button>
+                            <div class="panel bg-slate-200 max-h-0 overflow-hidden transition-max-height duration-200 ease-out">
+                                <p class="p-6 pt-2">{faq.answer}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
         </Container>
     </div>
     <Footer />
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
 </Layout>
