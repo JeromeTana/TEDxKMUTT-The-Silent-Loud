@@ -1,11 +1,15 @@
 ---
+import { Icon } from "astro-icon/components";
+
 interface Props {
     text: string;
     description?: string;
     variant: "primary" | "secondary";
+    iconLeft?: string;
+    iconRight?: string;
 }
 
-const { text, description, variant } = Astro.props;
+const { text, description, variant, iconLeft, iconRight } = Astro.props;
 
 const variantClasses = {
     primary: "bg-primary-500 group-hover:bg-primary-600 text-white",
@@ -16,9 +20,11 @@ const variantClasses = {
 
 <div class="group flex flex-col gap-1">
     <button
-        class={`button font-bold px-4 py-2 rounded-full duration-200 ${variantClasses[variant]}`}
+        class={`button flex items-center gap-1 font-bold px-4 py-2 rounded-full duration-200 ${variantClasses[variant]}`}
     >
-        {text}
+        {iconLeft && <Icon name={iconLeft} />}
+        <p>{text}</p>
+        {iconRight && <Icon name={iconRight} />}
     </button>
     <small class="text-slate-500">{description}</small>
 </div>
