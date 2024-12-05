@@ -1,0 +1,34 @@
+---
+interface Props {
+    title: string;
+    content: string;
+}
+
+const { title, content } = Astro.props;
+---
+
+<div class="overflow-clip cursor-pointer rounded-2xl">
+    <button
+        class="accordion bg-slate-200 text-gray-700 p-8 w-full border-none text-left outline-none text-xl transition duration-200 hover:bg-slate-300"
+    >
+        {title}
+    </button>
+    <div
+        class="panel bg-slate-200 max-h-0 overflow-hidden transition-max-height duration-200 ease-out"
+    >
+        <p class="p-8 pt-4">{content}</p>
+    </div>
+    <style>
+        .accordion:after {
+            content: "▼";
+            font-size: 1rem;
+            color: #94a3b8;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "▲";
+        }
+    </style>
+</div>
