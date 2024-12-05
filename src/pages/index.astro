@@ -8,6 +8,8 @@ import Footer from "../components/Footer.astro";
 import { Icon } from "astro-icon/components";
 import Button from "../components/Button.astro";
 import AgendaLayout from "../components/AgendaLayout.astro";
+import Accordion from "../components/Accordion.astro";
+import Marquee from "../components/Marquee.astro";
 
 const mockSpeakerInfo = [
     {
@@ -242,50 +244,32 @@ const mockFaqs = [
 
 <Layout title="The Silent Loud · TEDxKMUTT">
     <div class="bg-primary-500 text-white py-2">
-        <div class="marquee h-6 relative w-[100vw] max-w-full overflow-hidden">
-            <div
-                class="track absolute whitespace-nowrap will-change-transform animate-[marquee_32s_linear_infinite]"
-            >
-                <div class="content">
-                    &nbsp;Infinite Marquee with long sentence Infinite Marquee
-                    with long sentence Infinite Marquee with long sentence
-                    Infinite Marquee with long sentence Infinite Marquee with
-                    long sentence&nbsp;Infinite Marquee with long sentence
-                    Infinite Marquee with long sentence Infinite Marquee with
-                    long sentence Infinite Marquee with long sentence Infinite
-                    Marquee with long sentence&nbsp;Infinite Marquee with long
-                    sentence Infinite Marquee with long sentence Infinite
-                    Marquee with long sentence Infinite Marquee with long
-                    sentence Infinite Marquee with long sentence
-                </div>
-            </div>
-        </div>
+        <Marquee
+            content="Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence"
+        />
     </div>
     <Navbar />
     <div class="max-w-md m-auto text-center space-y-8">
         <img src="" alt="" class="bg-slate-500 w-full h-96" />
         <div class="flex flex-col items-center gap-2 text-lg">
-            <div class="flex items-center gap-2">
-                <Icon name="mdi:calendar" class="text-primary-500" />
+            <div class="flex items-center gap-1">
+                <Icon name="mdi:calendar" class="text-primary-500 text-2xl" />
                 <p class="text-slate-700">11 January 2025</p>
             </div>
-            <div class="flex items-center gap-2">
-                <Icon name="mdi:map-marker" class="text-primary-500" />
+            <div class="flex items-center gap-1">
+                <Icon name="mdi:map-marker" class="text-primary-500 text-2xl" />
                 <p class="text-slate-700">KX Building, Floor 7 & 8</p>
             </div>
         </div>
         <div class="flex gap-2 justify-center items-start">
-            <a href="#">
-                <Button
-                    variant="primary"
-                    text="Claim your tickets"
-                    iconRight="mdi:arrow-top-right"
-                    description="Only 300 tickets available"
-                />
-            </a>
-            <a href="#">
-                <Button variant="secondary" text="Event agenda" />
-            </a>
+            <Button
+                href="#"
+                variant="primary"
+                text="Claim your tickets"
+                iconRight="mdi:arrow-top-right"
+                description="Only 300 tickets available"
+            />
+            <Button href="#" variant="secondary" text="Event agenda" />
         </div>
     </div>
     <div class="space-y-60 my-20">
@@ -296,7 +280,7 @@ const mockFaqs = [
             <SectionTitle
                 target="about"
                 title="About the event"
-                subtitle="The Silent Loud"
+                subtitle="Make the Silent Loud"
             />
         </Container>
         <Container>
@@ -327,15 +311,8 @@ const mockFaqs = [
             />
             <div class="max-w-screen-lg m-auto space-y-2">
                 {
-                    mockFaqs.map((faq, index) => (
-                        <div class="overflow-clip cursor-pointer rounded-xl">
-                            <button class="accordion bg-slate-200 text-gray-700 p-6 w-full border-none text-left outline-none text-xl transition duration-200 hover:bg-slate-300">
-                                {faq.question}
-                            </button>
-                            <div class="panel bg-slate-200 max-h-0 overflow-hidden transition-max-height duration-200 ease-out">
-                                <p class="p-6 pt-2">{faq.answer}</p>
-                            </div>
-                        </div>
+                    mockFaqs.map((faq) => (
+                        <Accordion title={faq.question} content={faq.answer} />
                     ))
                 }
             </div>
@@ -357,6 +334,7 @@ const mockFaqs = [
 
         for (i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
                 var panel = this.nextElementSibling;
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
