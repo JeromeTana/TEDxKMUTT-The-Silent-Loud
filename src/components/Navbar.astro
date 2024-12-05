@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Logo from "../assets/logos/TEDxKMUTT_b.png";
 import NavLink from "./NavLink.astro";
+import Button from "./Button.astro";
 ---
 
 <div class="sticky top-0 w-full bg-white shadow-sm mb-4">
@@ -19,12 +20,12 @@ import NavLink from "./NavLink.astro";
             <NavLink href="#agenda" text="Agenda" />
             <NavLink href="#faqs" text="FAQs" />
         </ul>
-        <button
-            class="button hidden md:flex items-center gap-1 font-bold bg-primary-500 hover:bg-primary-600 duration-200 text-white px-4 py-2 rounded-full"
-        >
-            Claim your tickets
-            <Icon name="mdi:arrow-top-right" />
-        </button>
+        <Button
+            href="#"
+            variant="primary"
+            text="Claim your tickets"
+            iconRight="mdi:arrow-top-right"
+        />
         <a id="burger" href="javascript:void(0);" class="md:hidden">
             <Icon name="mdi:menu" class="text-3xl" />
         </a>
