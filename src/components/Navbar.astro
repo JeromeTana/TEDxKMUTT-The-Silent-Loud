@@ -20,12 +20,14 @@ import Button from "./Button.astro";
             <NavLink href="#agenda" text="Agenda" />
             <NavLink href="#faqs" text="FAQs" />
         </ul>
-        <Button
-            href="#"
-            variant="primary"
-            text="Claim your tickets"
-            iconRight="mdi:arrow-top-right"
-        />
+        <div class="hidden md:flex">
+            <Button
+                href="#"
+                variant="primary"
+                text="Claim your tickets"
+                iconRight="mdi:arrow-top-right"
+            />
+        </div>
         <a id="burger" href="javascript:void(0);" class="md:hidden">
             <Icon name="mdi:menu" class="text-3xl" />
         </a>
