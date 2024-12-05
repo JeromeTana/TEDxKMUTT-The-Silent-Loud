@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    title: string;
+    description: string;
+    time?: string;
+    speaker?: { name: string; image: string };
+}
+
+const { title, description, time, speaker } = Astro.props;
+---
+
+<div
+    class="flex flex-col md:flex-row md:items-center gap-4 md:gap-10 bg-white hover:bg-slate-50 duration-200 border p-6 rounded-3xl"
+>
+    <div class="flex items-center gap-2 text-xl text-primary-500">
+        <Icon name="mdi:clock-outline" />
+        <p>{time}</p>
+    </div>
+    <div class="space-y-4">
+        <div>
+            <h2 class="text-xl font-medium">
+                {title}
+            </h2>
+            <p class="text-slate-500">{description}</p>
+        </div>
+        <div>
+            {
+                speaker && (
+                    <div class="flex items-center gap-2">
+                        <img
+                            src={speaker.image}
+                            alt={speaker.name}
+                            class="w-6 h-6 rounded-full"
+                        />
+                        <p class="text-sm">{speaker.name}</p>
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</div>

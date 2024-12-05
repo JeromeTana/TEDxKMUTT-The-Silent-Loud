@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import AgendaItem from "./AgendaItem.astro";
 
 interface Props {
     title: string;
@@ -21,47 +22,11 @@ const { title, description, time, items } = Astro.props;
             </div>
             <div class="grid gap-2 mt-4">
                 {items.map((item) => (
-                    <div class="flex items-center gap-10 bg-white hover:bg-slate-50 duration-200 border p-6 rounded-xl">
-                        <div class="flex items-center gap-2 text-xl">
-                            <Icon name="mdi:clock-outline" />
-                            <p>{item.time}</p>
-                        </div>
-                        <div class="space-y-4">
-                            <div>
-                                <h2 class="text-xl font-medium">
-                                    {item.title}
-                                </h2>
-                                <p class="text-slate-500">{item.description}</p>
-                            </div>
-                            <div>
-                                {item.speaker && (
-                                    <div class="flex items-center gap-2">
-                                        <img
-                                            src={item.speaker.image}
-                                            alt={item.speaker.name}
-                                            class="w-6 h-6 rounded-full"
-                                        />
-                                        <p class="text-sm">
-                                            {item.speaker.name}
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
+                    <AgendaItem {...item} />
                 ))}
             </div>
         </div>
     ) : (
-        <div class="flex items-center gap-10 border bg-white hover:bg-slate-50 duration-200 p-6 rounded-xl">
-            <div class="flex items-center gap-2 text-xl">
-                <Icon name="mdi:clock-outline" />
-                <p>{time}</p>
-            </div>
-            <div>
-                <h2 class="text-xl font-medium">{title}</h2>
-                <p class="text-slate-500">{description}</p>
-            </div>
-        </div>
+        <AgendaItem time={time} title={title} description={description} />
     )
 }
