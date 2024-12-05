@@ -279,6 +279,7 @@ const mockFaqs = [
                 <Button
                     variant="primary"
                     text="Claim your tickets"
+                    iconRight="mdi:arrow-top-right"
                     description="Only 300 tickets available"
                 />
             </a>
@@ -345,6 +346,15 @@ const mockFaqs = [
         var acc = document.getElementsByClassName("accordion");
         var i;
 
+        function myFunction() {
+            var x = document.getElementById("myLinks") as HTMLElement;
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+
         for (i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function () {
                 var panel = this.nextElementSibling;
@@ -355,5 +365,13 @@ const mockFaqs = [
                 }
             });
         }
+
+        addEventListener("DOMContentLoaded", () => {
+            const burger = document.getElementById("burger") as HTMLElement;
+
+            burger.addEventListener("click", () => {
+                myFunction();
+            });
+        });
     </script>
 </Layout>
