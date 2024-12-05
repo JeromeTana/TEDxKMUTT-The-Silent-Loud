@@ -32,7 +32,10 @@ import Button from "./Button.astro";
             <Icon name="mdi:menu" class="text-3xl" />
         </a>
     </nav>
-    <ul id="myLinks" class="hidden md:!hidden">
+    <ul
+        id="myLinks"
+        class="hidden md:!hidden absolute bg-[#00000031] w-full h-screen"
+    >
         <NavLink href="#about" text="About event" />
         <NavLink href="#speakers" text="Speakers" />
         <NavLink href="#agenda" text="Agenda" />
