@@ -280,7 +280,7 @@ const mockFaqs = [
             <SectionTitle
                 target="about"
                 title="About the event"
-                subtitle="Make the Silent Loud"
+                subtitle="Make the Silent Out Loud"
             />
         </Container>
         <Container>
@@ -303,7 +303,7 @@ const mockFaqs = [
                 {mockAgenda.map((agenda) => <AgendaLayout {...agenda} />)}
             </div>
         </Container>
-        <div class="bg-slate-500 m-4 p-4 rounded-3xl text-center h-[80vh]">
+        <div class="bg-slate-500 m-2 p-4 rounded-3xl text-center h-[80vh]">
             <h3 class="text-6xl font-semibold">Join the Event</h3>
         </div>
         <Container>
@@ -349,8 +349,13 @@ const mockFaqs = [
 
         addEventListener("DOMContentLoaded", () => {
             const burger = document.getElementById("burger") as HTMLElement;
+            const myLinks = document.getElementById("myLinks") as HTMLElement;
 
             burger.addEventListener("click", () => {
+                myFunction();
+            });
+
+            myLinks.addEventListener("click", () => {
                 myFunction();
             });
         });
