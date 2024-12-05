@@ -7,9 +7,9 @@ interface Props {
 const { title, content } = Astro.props;
 ---
 
-<div class="overflow-clip cursor-pointer rounded-2xl">
+<div class="overflow-clip cursor-pointer rounded-xl md:rounded-2xl">
     <button
-        class="accordion bg-slate-200 text-gray-700 p-8 w-full border-none text-left outline-none text-xl transition duration-200 hover:bg-slate-300"
+        class="accordion bg-slate-200 text-gray-700 p-6 w-full border-none text-left outline-none text-xl transition duration-200 hover:bg-slate-300 md:p-8"
     >
         {title}
     </button>
