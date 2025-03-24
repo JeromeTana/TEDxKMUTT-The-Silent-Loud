@@ -15,11 +15,11 @@ const { href, text, description, variant, iconLeft, iconRight } = Astro.props;
 const variantClasses = {
     primary: "bg-primary-500 group-hover:bg-primary-600 text-white",
     secondary:
-        "bg-white group-hover:bg-slate-200 text-primary-500 border border-slate-300",
+        "bg-white group-hover:bg-neutral-100 text-primary-500 border border-lightGray",
 };
 ---
 
-<a href={href}>
+<a href={href} target="_blank" rel="noopener noreferrer">
     <div class="group flex flex-col gap-1">
         <button
             class={`button flex items-center gap-1 font-bold px-4 py-2 rounded-full duration-200 ${variantClasses[variant]}`}
@@ -28,6 +28,6 @@ const variantClasses = {
             <p>{text}</p>
             {iconRight && <Icon name={iconRight} />}
         </button>
-        <small class="text-slate-500">{description}</small>
+        <small class="text-darkGray">{description}</small>
     </div>
 </a>

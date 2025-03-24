@@ -5,40 +5,33 @@ import NavLink from "./NavLink.astro";
 import Button from "./Button.astro";
 ---
 
-<div class="sticky top-0 w-full bg-white shadow-sm mb-4">
-    <nav class="flex justify-between p-4 items-center">
-        <img
-            id="logo"
-            src={Logo.src}
-            alt=""
-            fetchpriority="high"
-            class="w-40"
-        />
-        <ul class="hidden md:flex gap-4 lg:gap-10 text-lg">
-            <NavLink href="#about" text="About event" />
-            <NavLink href="#speakers" text="Speakers" />
-            <NavLink href="#agenda" text="Agenda" />
-            <NavLink href="#faqs" text="FAQs" />
-        </ul>
-        <div class="hidden md:flex">
-            <Button
-                href="#"
-                variant="primary"
-                text="Claim your tickets"
-                iconRight="mdi:arrow-top-right"
-            />
-        </div>
-        <a id="burger" href="javascript:void(0);" class="md:hidden">
-            <Icon name="mdi:menu" class="text-3xl" />
-        </a>
-    </nav>
-    <ul
-        id="myLinks"
-        class="hidden md:!hidden absolute bg-[#00000031] w-full h-screen"
-    >
-        <NavLink href="#about" text="About event" />
-        <NavLink href="#speakers" text="Speakers" />
-        <NavLink href="#agenda" text="Agenda" />
-        <NavLink href="#faqs" text="FAQs" />
+<div class="sticky top-0 w-full bg-white shadow-sm mb-4 z-10">
+  <nav class="flex justify-between p-4 items-center">
+    <img id="logo" src={Logo.src} alt="" fetchpriority="high" class="w-40" />
+    <ul class="hidden md:flex gap-4 lg:gap-10 text-lg">
+      <NavLink href="#speakers" text="Speakers" />
+      <NavLink href="#agenda" text="Agenda" />
+      <NavLink href="#faqs" text="FAQs" />
     </ul>
+    <div class="hidden md:flex">
+      <Button
+        href="#"
+        variant="primary"
+        text="Claim your tickets"
+        iconRight="mdi:arrow-top-right"
+      />
+    </div>
+    <a id="burger" href="javascript:void(0);" class="md:hidden">
+      <Icon name="mdi:menu" class="text-3xl" />
+    </a>
+  </nav>
+  <ul
+    id="myLinks"
+    class="hidden md:!hidden absolute bg-[#00000031] w-full h-screen"
+  >
+    <NavLink href="#about" text="About event" />
+    <NavLink href="#speakers" text="Speakers" />
+    <NavLink href="#agenda" text="Agenda" />
+    <NavLink href="#faqs" text="FAQs" />
+  </ul>
 </div>

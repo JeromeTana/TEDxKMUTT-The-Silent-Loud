@@ -1,34 +1,97 @@
 ---
+import { Icon } from "astro-icon/components";
+
 interface Props {
-    title: string;
-    content: string;
+  title: string;
+  content: string;
 }
 
-const { title, content } = Astro.props;
+const { title, content } = Astro.props as Props;
 ---
 
-<div class="overflow-clip cursor-pointer rounded-xl md:rounded-2xl">
-    <button
-        class="accordion bg-slate-200 text-gray-700 p-6 w-full border-none text-left outline-none text-xl transition duration-200 hover:bg-slate-300 md:p-8"
-    >
-        {title}
-    </button>
-    <div
-        class="panel bg-slate-200 max-h-0 overflow-hidden transition-max-height duration-200 ease-out"
-    >
-        <p class="p-8 pt-4">{content}</p>
-    </div>
-    <style>
-        .accordion:after {
-            content: "▼";
-            font-size: 1rem;
-            color: #94a3b8;
-            float: right;
-            margin-left: 5px;
-        }
+<div
+  class="accordion group relative rounded-2xl border border-lightGray bg-foreground duration-200 hover:bg-gray-100"
+>
+  <button
+    class="accordion__button flex w-full flex-1 items-center justify-between gap-2 p-8 text-xl text-left font-semibold transition cursor-pointer"
+    type="button"
+    id={`${title} accordion menu button`}
+    aria-expanded="false"
+    aria-controls={`${title} accordion menu content`}
+  >
+    {title}
 
-        .active:after {
-            content: "▲";
-        }
-    </style>
+    <!-- if using astro and the astro-icon package -->
+    <Icon
+      name="mdi:chevron-down"
+      aria-hidden="true"
+      class="accordion__chevron h-7 w-7 shrink-0 transition-transform text-darkGray"
+    />
+  </button>
+
+  <div
+    id={`${title} accordion menu content`}
+    aria-labelledby={`${title} accordion menu button`}
+    class="accordion__content hidden max-h-0 overflow-hidden px-8 transition-all duration-300 ease-in-out"
+  >
+    <p class="prose mb-8 max-w-full transition-[height] text-darkGray">
+      {content}
+    </p>
+  </div>
 </div>
+<script>
+  function accordionSetup() {
+    const accordionMenus = document.querySelectorAll(
+      ".accordion"
+    ) as NodeListOf<HTMLElement>;
+    accordionMenus.forEach((accordionMenu) => {
+      const accordionButton = accordionMenu.querySelector(
+        ".accordion__button"
+      ) as HTMLElement;
+      const accordionChevron = accordionMenu.querySelector(
+        ".accordion__chevron"
+      ) as HTMLElement;
+      const accordionContent = accordionMenu.querySelector(
+        ".accordion__content"
+      ) as HTMLElement;
+
+      if (accordionButton && accordionContent && accordionChevron) {
+        accordionButton.addEventListener("click", (event) => {
+          if (!accordionMenu.classList.contains("active")) {
+            // if accordion is currently closed, so open it
+            accordionMenu.classList.add("active");
+            accordionButton.setAttribute("aria-expanded", "true");
+
+            // set max-height to the height of the accordion content
+            // this makes it animate properly
+            accordionContent.classList.remove("hidden");
+            accordionContent.style.maxHeight =
+              accordionContent.scrollHeight + "px";
+            accordionChevron.classList.add("rotate-180");
+          } else {
+            // accordion is currently open, so close it
+            accordionMenu.classList.remove("active");
+            accordionButton.setAttribute("aria-expanded", "false");
+
+            // set max-height to the height of the accordion content
+            // this makes it animate properly
+            accordionContent.style.maxHeight = "0px";
+            accordionChevron.classList.remove("rotate-180");
+            // delay to allow close animation
+            setTimeout(() => {
+              accordionContent.classList.add("hidden");
+            }, 300);
+          }
+          event.preventDefault();
+          return false;
+        });
+      }
+    });
+  }
+
+  // runs on initial page load
+  accordionSetup();
+
+  // runs on view transitions navigation
+  document.addEventListener("astro:after-swap", accordionSetup);
+</script>

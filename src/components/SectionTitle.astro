@@ -1,16 +1,18 @@
 ---
 interface Props {
     title: string;
-    subtitle: string;
+    header: string;
+    description?: string;
     target: string;
 }
 
-const { title, subtitle, target } = Astro.props;
+const { title, header, description, target } = Astro.props;
 ---
 
 <div id={target} class="text-center space-y-4 pt-20 mb-16">
     <div>
         <small class="p-2 text-primary-500 text-xl font-medium">{title}</small>
     </div>
-    <h2 class="text-4xl md:text-7xl font-semibold">{subtitle}</h2>
+    <h2 class="text-4xl md:text-6xl font-semibold">{header}</h2>
+    <p class="max-w-screen-sm m-auto text-slate-500">{description}</p>
 </div>

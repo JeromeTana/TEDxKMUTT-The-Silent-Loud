@@ -1,363 +1,461 @@
 ---
-import Navbar from "../components/Navbar.astro";
-import Layout from "../layouts/Layout.astro";
-import Container from "../components/Container.astro";
-import SectionTitle from "../components/SectionTitle.astro";
-import SpeakerCard from "../components/SpeakerCard.astro";
-import Footer from "../components/Footer.astro";
+import Navbar from "@/components/Navbar.astro";
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/Container.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import SpeakerCard from "@/components/SpeakerCard.astro";
 import { Icon } from "astro-icon/components";
-import Button from "../components/Button.astro";
-import AgendaLayout from "../components/AgendaLayout.astro";
-import Accordion from "../components/Accordion.astro";
-import Marquee from "../components/Marquee.astro";
+import Button from "@/components/Button.astro";
+import AgendaLayout from "@/components/AgendaLayout.astro";
+import Accordion from "@/components/Accordion.astro";
+import Marquee from "@/components/Marquee.astro";
+import { Image } from "astro:assets";
+
+import snakeL from "@/assets/Icons/snakeL.svg";
+import snakeR from "@/assets/Icons/snakeR.svg";
+import shrimpL from "@/assets/Icons/shrimpL.svg";
+import shrimpR from "@/assets/Icons/shrimpR.svg";
+import flower from "@/assets/Icons/Group-3.svg";
+import star from "@/assets/Icons/Group-4.svg";
+import lotus from "@/assets/Icons/Group-5.svg";
+import wave from "@/assets/Icons/Vector-1.svg";
+import bigStar from "@/assets/Icons/Vector.svg";
+import target from "@/assets/Icons/Group.svg";
+
+import logo from "@/assets/logos/Logo.png";
+
+const EVENT_DATE = "26 April 2025";
+const EVENT_LOCATION = "KX Building, Floor 7 & 8";
 
 const mockSpeakerInfo = [
-    {
-        name: "John Doe",
-        title: "CEO of Company",
-        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        socials: [
-            { title: "Facebook", url: "#", icon: "mdi:facebook" },
-            { title: "Twitter", url: "#", icon: "mdi:twitter" },
-            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-        ],
-    },
-    {
-        name: "Jane Doe",
-        title: "CTO of Company",
-        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        socials: [
-            { title: "Facebook", url: "#", icon: "mdi:facebook" },
-            { title: "Twitter", url: "#", icon: "mdi:twitter" },
-            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-        ],
-    },
-    {
-        name: "John Smith",
-        title: "CFO of Company",
-        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        socials: [
-            { title: "Facebook", url: "#", icon: "mdi:facebook" },
-            { title: "Twitter", url: "#", icon: "mdi:twitter" },
-            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-        ],
-    },
-    {
-        name: "John Smith",
-        title: "CFO of Company",
-        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        socials: [
-            { title: "Facebook", url: "#", icon: "mdi:facebook" },
-            { title: "Twitter", url: "#", icon: "mdi:twitter" },
-            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-        ],
-    },
-    {
-        name: "John Smith",
-        title: "CFO of Company",
-        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        socials: [
-            { title: "Facebook", url: "#", icon: "mdi:facebook" },
-            { title: "Twitter", url: "#", icon: "mdi:twitter" },
-            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-        ],
-    },
-    {
-        name: "John Smith",
-        title: "CFO of Company",
-        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        socials: [
-            { title: "Facebook", url: "#", icon: "mdi:facebook" },
-            { title: "Twitter", url: "#", icon: "mdi:twitter" },
-            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-        ],
-    },
-    {
-        name: "John Smith",
-        title: "CFO of Company",
-        image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        socials: [
-            { title: "Facebook", url: "#", icon: "mdi:facebook" },
-            { title: "Twitter", url: "#", icon: "mdi:twitter" },
-            { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-        ],
-    },
+  {
+    name: "John Doe",
+    title: "CEO of Company",
+    socials: [
+      { title: "Facebook", url: "#", icon: "mdi:facebook" },
+      { title: "Twitter", url: "#", icon: "mdi:twitter" },
+      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+    ],
+  },
+  {
+    name: "Jane Doe",
+    title: "CTO of Company",
+    socials: [
+      { title: "Facebook", url: "#", icon: "mdi:facebook" },
+      { title: "Twitter", url: "#", icon: "mdi:twitter" },
+      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+    ],
+  },
+  {
+    name: "John Smith",
+    title: "CFO of Company",
+    socials: [
+      { title: "Facebook", url: "#", icon: "mdi:facebook" },
+      { title: "Twitter", url: "#", icon: "mdi:twitter" },
+      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+    ],
+  },
+  {
+    name: "John Smith",
+    title: "CFO of Company",
+    socials: [
+      { title: "Facebook", url: "#", icon: "mdi:facebook" },
+      { title: "Twitter", url: "#", icon: "mdi:twitter" },
+      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+    ],
+  },
+  {
+    name: "John Smith",
+    title: "CFO of Company",
+    socials: [
+      { title: "Facebook", url: "#", icon: "mdi:facebook" },
+      { title: "Twitter", url: "#", icon: "mdi:twitter" },
+      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+    ],
+  },
+  {
+    name: "John Smith",
+    title: "CFO of Company",
+    socials: [
+      { title: "Facebook", url: "#", icon: "mdi:facebook" },
+      { title: "Twitter", url: "#", icon: "mdi:twitter" },
+      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+    ],
+  },
+  {
+    name: "John Smith",
+    title: "CFO of Company",
+    socials: [
+      { title: "Facebook", url: "#", icon: "mdi:facebook" },
+      { title: "Twitter", url: "#", icon: "mdi:twitter" },
+      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
+    ],
+  },
 ];
 
 const mockAgenda = [
-    {
+  {
+    title: "Welcome",
+    description: "Get your name tags and find your seats",
+    items: [
+      {
         time: "12:00",
         title: "Registration",
         description: "Get your name tags and find your seats",
-    },
-    {
-        title: "Section 1",
+      },
+      {
+        time: "12:00",
+        title: "Opening Ceremony",
         description: "Get your name tags and find your seats",
-        items: [
-            {
-                time: "12:30",
-                title: "First Talks",
-                description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                speaker: {
-                    name: "John Doe",
-                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                },
-            },
-            {
-                time: "12:45",
-                title: "Second Talks",
-                description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                speaker: {
-                    name: "John Doe",
-                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                },
-            },
-            {
-                time: "13:00",
-                title: "Third Talks",
-                description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                speaker: {
-                    name: "John Doe",
-                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                },
-            },
-        ],
-    },
-    {
-        title: "Section 2",
-        description: "Get your name tags and find your seats",
-        items: [
-            {
-                time: "12:30",
-                title: "First Talks",
-                description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                speaker: {
-                    name: "John Doe",
-                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                },
-            },
-            {
-                time: "12:45",
-                title: "Second Talks",
-                description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                speaker: {
-                    name: "John Doe",
-                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                },
-            },
-            {
-                time: "13:00",
-                title: "Third Talks",
-                description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                speaker: {
-                    name: "John Doe",
-                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                },
-            },
-        ],
-    },
-    {
-        title: "Section 3",
-        description: "Get your name tags and find your seats",
-        type: "group",
-        items: [
-            {
-                time: "12:30",
-                title: "First Talks",
-                description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                speaker: {
-                    name: "John Doe",
-                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                },
-            },
-            {
-                time: "12:45",
-                title: "Second Talks",
-                description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                speaker: {
-                    name: "John Doe",
-                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                },
-            },
-            {
-                time: "13:00",
-                title: "Third Talks",
-                description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                speaker: {
-                    name: "John Doe",
-                    image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                },
-            },
-        ],
-    },
-    {
-        time: "17:00",
-        title: "Closing Ceremony",
-        description: "Thank you for joining us",
-    },
+      },
+    ],
+  },
+  {
+    title: "Section 1",
+    description: "Get your name tags and find your seats",
+    items: [
+      {
+        time: "12:30",
+        title: "First Talks",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        speaker: {
+          name: "John Doe",
+          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        },
+      },
+      {
+        time: "12:45",
+        title: "Second Talks",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        speaker: {
+          name: "John Doe",
+          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        },
+      },
+      {
+        time: "13:00",
+        title: "Third Talks",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        speaker: {
+          name: "John Doe",
+          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        },
+      },
+    ],
+  },
+  {
+    title: "Section 2",
+    description: "Get your name tags and find your seats",
+    items: [
+      {
+        time: "12:30",
+        title: "First Talks",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        speaker: {
+          name: "John Doe",
+          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        },
+      },
+      {
+        time: "12:45",
+        title: "Second Talks",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        speaker: {
+          name: "John Doe",
+          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        },
+      },
+      {
+        time: "13:00",
+        title: "Third Talks",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        speaker: {
+          name: "John Doe",
+          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        },
+      },
+    ],
+  },
+  {
+    title: "Section 3",
+    description: "Get your name tags and find your seats",
+    type: "group",
+    items: [
+      {
+        time: "12:30",
+        title: "First Talks",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        speaker: {
+          name: "John Doe",
+          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        },
+      },
+      {
+        time: "12:45",
+        title: "Second Talks",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        speaker: {
+          name: "John Doe",
+          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        },
+      },
+      {
+        time: "13:00",
+        title: "Third Talks",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        speaker: {
+          name: "John Doe",
+          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
+        },
+      },
+    ],
+  },
 ];
 
 const mockFaqs = [
-    {
-        question: "What is the event about?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-        question: "How can I join the event?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-        question: "What is the event about?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-        question: "What is the event about?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-        question: "What is the event about?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-        question: "What is the event about?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-        question: "What is the event about?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-        question: "What is the event about?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullam",
-    },
+  {
+    question: "What is the event about?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "How can I join the event?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "What is the event about?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "What is the event about?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "What is the event about?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "What is the event about?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "What is the event about?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "What is the event about?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullam",
+  },
 ];
 ---
 
 <Layout title="The Silent Loud · TEDxKMUTT">
-    <div class="bg-primary-500 text-white py-2">
-        <Marquee
-            content="Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence"
+  <div class="bg-primary-500 text-white py-2">
+    <Marquee
+      content="Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence"
+    />
+  </div>
+  <Navbar />
+  <div class="space-y-64">
+    <section>
+      <div class="max-w-xl mt-16 m-auto text-center space-y-8">
+        <Image
+          src={logo}
+          alt={"The Silent Loud Logo"}
+          width={1800}
+          class="w-full"
         />
-    </div>
-    <Navbar />
-    <div class="max-w-md m-auto text-center space-y-8">
-        <img src="" alt="" class="bg-slate-500 w-full h-96" />
         <div class="flex flex-col items-center gap-2 text-lg">
-            <div class="flex items-center gap-1">
-                <Icon name="mdi:calendar" class="text-primary-500 text-2xl" />
-                <p class="text-slate-700">11 January 2025</p>
-            </div>
-            <div class="flex items-center gap-1">
-                <Icon name="mdi:map-marker" class="text-primary-500 text-2xl" />
-                <p class="text-slate-700">KX Building, Floor 7 & 8</p>
-            </div>
+          <div class="flex items-center gap-1 text-darkGray">
+            <Icon name="mdi:calendar" class="text-primary-500 text-2xl" />
+            <p>{EVENT_DATE}</p>
+          </div>
+          <div class="flex items-center gap-1 text-darkGray">
+            <Icon name="mdi:map-marker" class="text-primary-500 text-2xl" />
+            <p>{EVENT_LOCATION}</p>
+          </div>
         </div>
         <div class="flex gap-2 justify-center items-start">
-            <Button
-                href="#"
-                variant="primary"
-                text="Claim your tickets"
+          <Button
+            href="#"
+            variant="primary"
+            text="Claim your tickets"
+            iconRight="mdi:arrow-top-right"
+            description="Only 300 tickets available"
+          />
+          <Button href="#" variant="secondary" text="Event agenda" />
+        </div>
+      </div>
+      <div class="relative p-4">
+        <div
+          class="max-w-screen-2xl m-auto aspect-video bg-foreground border border-lightGray rounded-3xl mt-16"
+        >
+        </div>
+        <img
+          src={flower.src}
+          alt=""
+          class="absolute -top-32 -right-16 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
+        />
+        <img
+          src={star.src}
+          alt=""
+          class="absolute -bottom-32 -left-16 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
+        />
+      </div>
+    </section>
+    <Container>
+      <div class="flex items-center justify-center gap-8 w-full">
+        <img id="background" src={snakeL.src} alt="" class="w-16" />
+        <h2 class="text-4xl md:text-6xl text-center font-semibold">Make The Silent Loud</h2>
+        <img id="background" src={snakeR.src} alt="" class="w-16" />
+      </div>
+      <div class="relative grid grid-cols-1 md:grid-cols-2 gap-4 h-[32rem] mt-16">
+        <img
+          src={wave.src}
+          alt=""
+          class="absolute -top-64 -right-32 opacity-20 -z-10 w-[32rem]"
+        />
+        <div class="bg-foreground border border-lightGray rounded-3xl"></div>
+        <div class="grid grid-rows-2 gap-4">
+          <div class="bg-foreground border border-lightGray rounded-3xl"></div>
+          <div class="bg-foreground border border-lightGray rounded-3xl"></div>
+        </div>
+      </div>
+    </Container>
+    <Container>
+      <SectionTitle
+        target="speakers"
+        title="Speakers"
+        header="Meet the Idea Sharers"
+      />
+      <div class="relative grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {mockSpeakerInfo.map((speaker) => <SpeakerCard {...speaker} />)}
+        <img
+          src={shrimpL.src}
+          alt=""
+          class="absolute -top-40 -left-40 opacity-20 -z-10 w-64"
+        />
+        <img
+          src={shrimpR.src}
+          alt=""
+          class="absolute -bottom-40 -right-32 opacity-20 -z-10 w-[20rem]"
+        />
+      </div>
+    </Container>
+    <Container>
+      <SectionTitle
+        target="when-and-where"
+        title="When & Where"
+        header="Event details"
+      />
+      <div class="relative grid md:grid-cols-2 gap-4">
+        <img
+          src={target.src}
+          alt=""
+          class="absolute -top-40 -right-32 opacity-20 -z-10 w-[20rem] animate-[pulse_5s_linear_infinite]"
+        />
+        <div class="flex flex-col gap-4">
+          <div class="bg-foreground border border-lightGray rounded-3xl p-8">
+            <div class="inline-flex items-center gap-2">
+              <Icon name="mdi:calendar" class="text-primary-500 text-3xl" />
+              <h2 class="text-2xl font-semibold">
+                {EVENT_DATE}
+              </h2>
+            </div>
+            <h3 class="text-xl mt-2 text-darkGray">12:00 - 18:00</h3>
+            <div class="w-fit mt-8">
+              <Button
+                href="#agenda"
+                variant="secondary"
+                text="See the agenda"
+              />
+            </div>
+          </div>
+          <div class="bg-foreground border border-lightGray rounded-3xl p-8">
+            <div class="inline-flex items-center gap-2">
+              <Icon name="mdi:map-marker" class="text-primary-500 text-3xl" />
+              <h2 class="text-2xl font-semibold">Knownledge Exchange</h2>
+            </div>
+            <h3 class="text-xl mt-2 text-darkGray">Floor 7 & 8</h3>
+            <p class="text-darkGray mt-4">
+              110/1 Krung Thon Buri Road, <br />
+              Bang Lamphu Lang, Khlong San, <br />
+              Bangkok 10600
+            </p>
+            <div class="w-fit mt-8">
+              <Button
+                href="https://maps.app.goo.gl/LebcD84CMNj7i4qM7"
+                variant="secondary"
+                text="View on map"
                 iconRight="mdi:arrow-top-right"
-                description="Only 300 tickets available"
-            />
-            <Button href="#" variant="secondary" text="Event agenda" />
-        </div>
-    </div>
-    <div class="space-y-32 my-20">
-        <div class="max-w-screen-2xl m-auto">
-            <div class="h-[52rem] bg-slate-500 rounded-3xl p-2"></div>
-        </div>
-        <Container>
-            <SectionTitle
-                target="about"
-                title="About the event"
-                subtitle="Make the Silent Out Loud"
-            />
-        </Container>
-        <Container>
-            <SectionTitle
-                target="speakers"
-                title="Speakers"
-                subtitle="Meet the Idea Sharers"
-            />
-            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-2">
-                {mockSpeakerInfo.map((speaker) => <SpeakerCard {...speaker} />)}
+              />
             </div>
-        </Container>
-        <Container>
-            <SectionTitle
-                target="agenda"
-                title="Agenda"
-                subtitle="Amazing talks in a day"
-            />
-            <div class="space-y-2">
-                {mockAgenda.map((agenda) => <AgendaLayout {...agenda} />)}
-            </div>
-        </Container>
-        <div class="bg-slate-500 m-2 p-4 rounded-3xl text-center h-[80vh]">
-            <h3 class="text-6xl font-semibold">Join the Event</h3>
+          </div>
         </div>
-        <Container>
-            <SectionTitle
-                target="faqs"
-                title="FAQs"
-                subtitle="Answers to your questions"
-            />
-            <div class="max-w-screen-lg m-auto space-y-2">
-                {
-                    mockFaqs.map((faq) => (
-                        <Accordion title={faq.question} content={faq.answer} />
-                    ))
-                }
-            </div>
-        </Container>
-    </div>
-    <Footer />
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        function myFunction() {
-            var x = document.getElementById("myLinks") as HTMLElement;
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
+        <div
+          class="bg-foreground h-[32rem] md:h-auto border border-lightGray rounded-3xl overflow-clip"
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.967595737792!2d100.49578297508964!3d13.720411686668196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e298ee5d02d0a3%3A0xe2511ae461733d57!2sKnowledge%20Exchange%20Center%20(KX)!5e0!3m2!1sen!2sth!4v1742807155241!5m2!1sen!2sth"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="w-full h-full"></iframe>
+        </div>
+      </div>
+    </Container>
+    <Container>
+      <SectionTitle
+        target="agenda"
+        title="Agenda"
+        header="Amazing talks in a day"
+      />
+      <div class="relative space-y-16">
+        <img
+          src={bigStar.src}
+          alt=""
+          class="absolute -top-40 -right-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
+        />
+        {
+          mockAgenda.map((agenda, index) => (
+            <AgendaLayout {...agenda} index={index} />
+          ))
         }
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
+      </div>
+    </Container>
+    <Container>
+      <SectionTitle
+        target="faqs"
+        title="FAQs"
+        header="Answers to your questions"
+      />
+      <div class="relative max-w-screen-md m-auto space-y-4">
+        <img
+          src={lotus.src}
+          alt=""
+          class="absolute -bottom-40 -left-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
+        />
+        {
+          mockFaqs.map((faq) => (
+            <Accordion title={faq.question} content={faq.answer} />
+          ))
         }
-
-        addEventListener("DOMContentLoaded", () => {
-            const burger = document.getElementById("burger") as HTMLElement;
-            const myLinks = document.getElementById("myLinks") as HTMLElement;
-
-            burger.addEventListener("click", () => {
-                myFunction();
-            });
-
-            myLinks.addEventListener("click", () => {
-                myFunction();
-            });
-        });
-    </script>
+      </div>
+    </Container>
+    <Container>
+      <div
+        class="bg-foreground border border-lightGray m-4 p-4 rounded-3xl text-center h-[80vh]"
+      >
+        <h3 class="text-6xl font-semibold">Join the Event</h3>
+      </div>
+    </Container>
+  </div>
 </Layout>

@@ -1,42 +1,59 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import GooseDurian from "@/assets/goose_durian.png";
 
 interface Social {
-    title: string;
-    url: string;
-    icon: string;
+  title: string;
+  url: string;
+  icon: string;
 }
 
 interface Props {
-    name: string;
-    title: string;
-    image: string;
-    socials: Social[];
+  name: string;
+  title: string;
+  image: string;
+  socials: Social[];
 }
 
 const { name, title, image, socials } = Astro.props;
 ---
 
 <div
-    class="card flex md:flex-col gap-6 items-start md:items-center md:text-center p-6 border rounded-2xl md:rounded-3xl md:p-8"
+  class="card bg-foreground border-lightGray flex md:flex-col gap-6 items-start md:items-center md:text-center p-6 border rounded-2xl md:rounded-3xl"
 >
-    <img src={image} alt="" class="rounded-full w-24 md:w-36 md:m-auto" />
-    <div class="flex flex-col items-start md:items-center gap-1">
-        <div class="mb-4">
-            <h3 class="font-bold text-2xl">{name}</h3>
-            <p class="text-primary-500">{title}</p>
-        </div>
-        <div class="flex justify-center gap-2 text-2xl">
-            {
-                socials.map((social) => (
-                    <a
-                        href={social.url}
-                        class="button hover:text-primary-500 duration-200"
-                    >
-                        <Icon name={social.icon}>{social.icon}</Icon>
-                    </a>
-                ))
-            }
-        </div>
+  {
+    image ? (
+      <img
+        src={image}
+        alt=""
+        class="rounded-full w-24 md:w-36 md:m-auto bg-neutral-200"
+      />
+    ) : (
+      <Image
+        src={GooseDurian}
+        alt="Goose Durian"
+        width={300}
+        class="rounded-full w-24 md:w-36 md:m-auto bg-neutral-200"
+      />
+    )
+  }
+  <div class="flex flex-col items-start md:items-center gap-1">
+    <div class="mb-4">
+      <h3 class="font-bold text-2xl">{name}</h3>
+      <p class="text-primary-500">{title}</p>
     </div>
+    <div class="flex justify-center gap-2 text-2xl">
+      {
+        socials.map((social) => (
+          <a
+            href={social.url}
+            class="button hover:text-primary-500 duration-200"
+          >
+            <Icon name={social.icon}>{social.icon}</Icon>
+          </a>
+        ))
+      }
+    </div>
+  </div>
 </div>
