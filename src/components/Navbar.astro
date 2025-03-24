@@ -14,12 +14,13 @@ import Button from "./Button.astro";
       <NavLink href="#faqs" text="FAQs" />
     </ul>
     <div class="hidden md:flex">
-      <Button
-        href="#"
-        variant="primary"
-        text="Claim your tickets"
-        iconRight="mdi:arrow-top-right"
-      />
+      <a href="#">
+        <Button
+          variant="primary"
+          text="Claim your tickets"
+          iconRight="mdi:arrow-top-right"
+        />
+      </a>
     </div>
     <a id="burger" href="javascript:void(0);" class="md:hidden">
       <Icon name="mdi:menu" class="text-3xl" />

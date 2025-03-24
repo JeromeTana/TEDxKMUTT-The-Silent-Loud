@@ -22,6 +22,10 @@ import wave from "@/assets/Icons/Vector-1.svg";
 import bigStar from "@/assets/Icons/Vector.svg";
 import target from "@/assets/Icons/Group.svg";
 
+import GooseYadom from "@/assets/goose_yadom.png";
+import GooseMuay from "@/assets/goose_muay.png";
+import GooseTukTuk from "@/assets/goose_tuktuk.png";
+
 import logo from "@/assets/logos/Logo.png";
 
 const EVENT_DATE = "26 April 2025";
@@ -264,7 +268,12 @@ const mockFaqs = [
   </div>
   <Navbar />
   <div class="space-y-64">
-    <section>
+    <section class="relative">
+      <img
+        src={flower.src}
+        alt=""
+        class="absolute -top-48 -right-16 opacity-20 -z-10 w-[24rem] animate-[spin_10s_linear_infinite]"
+      />
       <div class="max-w-xl mt-16 m-auto text-center space-y-8">
         <Image
           src={logo}
@@ -283,14 +292,17 @@ const mockFaqs = [
           </div>
         </div>
         <div class="flex gap-2 justify-center items-start">
-          <Button
-            href="#"
-            variant="primary"
-            text="Claim your tickets"
-            iconRight="mdi:arrow-top-right"
-            description="Only 300 tickets available"
-          />
-          <Button href="#" variant="secondary" text="Event agenda" />
+          <a href="#">
+            <Button
+              variant="primary"
+              text="Claim your tickets"
+              iconRight="mdi:arrow-top-right"
+              description="Only 300 tickets available"
+            />
+          </a>
+          <a href="#agenda">
+            <Button variant="secondary" text="View agenda" />
+          </a>
         </div>
       </div>
       <div class="relative p-4">
@@ -299,30 +311,41 @@ const mockFaqs = [
         >
         </div>
         <img
-          src={flower.src}
-          alt=""
-          class="absolute -top-32 -right-16 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
-        />
-        <img
           src={star.src}
           alt=""
-          class="absolute -bottom-32 -left-16 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
+          class="absolute -top-20 -left-32 opacity-20 -z-10 w-[24rem] animate-[spin_10s_linear_infinite]"
+        />
+        <Image
+          src={GooseYadom}
+          alt=""
+          width={800}
+          class="absolute -top-32 right-20 -z-10 w-[24rem]"
         />
       </div>
     </section>
     <Container>
       <div class="flex items-center justify-center gap-8 w-full">
         <img id="background" src={snakeL.src} alt="" class="w-16" />
-        <h2 class="text-4xl md:text-6xl text-center font-semibold">Make The Silent Loud</h2>
+        <h2 class="text-4xl md:text-6xl text-center font-semibold">
+          Make The Silent Loud
+        </h2>
         <img id="background" src={snakeR.src} alt="" class="w-16" />
       </div>
-      <div class="relative grid grid-cols-1 md:grid-cols-2 gap-4 h-[32rem] mt-16">
+      <div
+        class="relative grid grid-cols-1 md:grid-cols-2 gap-4 h-[32rem] mt-16"
+      >
         <img
           src={wave.src}
           alt=""
           class="absolute -top-64 -right-32 opacity-20 -z-10 w-[32rem]"
         />
         <div class="bg-foreground border border-lightGray rounded-3xl"></div>
+        <Image
+          src={GooseMuay}
+          alt=""
+          width={800}
+          class="absolute bottom-0 -left-32 -rotate-12 -z-10 w-80"
+        />
         <div class="grid grid-rows-2 gap-4">
           <div class="bg-foreground border border-lightGray rounded-3xl"></div>
           <div class="bg-foreground border border-lightGray rounded-3xl"></div>
@@ -361,6 +384,12 @@ const mockFaqs = [
           alt=""
           class="absolute -top-40 -right-32 opacity-20 -z-10 w-[20rem] animate-[pulse_5s_linear_infinite]"
         />
+        <Image
+          src={GooseTukTuk}
+          alt=""
+          width={800}
+          class="absolute -bottom-20 -right-20 -rotate-12  w-80"
+        />
         <div class="flex flex-col gap-4">
           <div class="bg-foreground border border-lightGray rounded-3xl p-8">
             <div class="inline-flex items-center gap-2">
@@ -371,11 +400,9 @@ const mockFaqs = [
             </div>
             <h3 class="text-xl mt-2 text-darkGray">12:00 - 18:00</h3>
             <div class="w-fit mt-8">
-              <Button
-                href="#agenda"
-                variant="secondary"
-                text="See the agenda"
-              />
+              <a href="#agenda">
+                <Button variant="secondary" text="View agenda" />
+              </a>
             </div>
           </div>
           <div class="bg-foreground border border-lightGray rounded-3xl p-8">
@@ -390,12 +417,13 @@ const mockFaqs = [
               Bangkok 10600
             </p>
             <div class="w-fit mt-8">
-              <Button
-                href="https://maps.app.goo.gl/LebcD84CMNj7i4qM7"
-                variant="secondary"
-                text="View on map"
-                iconRight="mdi:arrow-top-right"
-              />
+              <a href="https://maps.app.goo.gl/LebcD84CMNj7i4qM7">
+                <Button
+                  variant="secondary"
+                  text="View on map"
+                  iconRight="mdi:arrow-top-right"
+                />
+              </a>
             </div>
           </div>
         </div>
