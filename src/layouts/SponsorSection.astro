@@ -28,7 +28,7 @@ const silverSponsors = await sanityClient.fetch<SanityDocument[]>(
   <div class="relative max-w-screen-md m-auto space-y-16">
     {
       platinumSponsors.length > 0 && (
-        <div class="space-y-4">
+        <div data-aos="fade-up" class="space-y-4">
           <h3 class="text-2xl font-semibold">Platinum</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {platinumSponsors.map((sponsor) => (
@@ -43,7 +43,7 @@ const silverSponsors = await sanityClient.fetch<SanityDocument[]>(
       )
     }{
       goldSponsors.length > 0 && (
-        <div class="space-y-4">
+        <div data-aos="fade-up" class="space-y-4">
           <h3 class="text-2xl font-semibold">Gold</h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             {goldSponsors.map((sponsor) => (
@@ -58,7 +58,7 @@ const silverSponsors = await sanityClient.fetch<SanityDocument[]>(
       )
     }{
       silverSponsors.length > 0 && (
-        <div class="space-y-4">
+        <div data-aos="fade-up" class="space-y-4">
           <h3 class="text-2xl font-semibold">Silver</h3>
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             {silverSponsors.map((sponsor) => (

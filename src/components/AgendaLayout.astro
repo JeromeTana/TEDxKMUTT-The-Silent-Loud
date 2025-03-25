@@ -14,7 +14,10 @@ interface Props {
 const { title, startTime, endTime, talks, spinIcon } = Astro.props;
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between">
+<div
+  data-aos="fade-up"
+  class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between"
+>
   <div>
     <div class="sticky top-32">
       <div class="inline-flex items-center gap-4">

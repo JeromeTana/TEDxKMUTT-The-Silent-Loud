@@ -11,8 +11,6 @@ import SpeakersImage from "@/components/SpeakersImage.astro";
 
 const EVENT_DATE = "26 April 2025";
 const EVENT_LOCATION = "KX Building, Floor 7 & 8";
-
-
 ---
 
 <section class="relative pt-16">
@@ -23,7 +21,7 @@ const EVENT_LOCATION = "KX Building, Floor 7 & 8";
   />
   <div class="max-w-xl m-auto text-center space-y-8">
     <Image src={logo} alt="The Silent Loud Logo" width={1800} class="w-full" />
-    <div class="flex flex-col items-center gap-2 text-lg">
+    <div data-aos="fade-up" class="flex flex-col items-center gap-2 text-lg">
       <div class="flex items-center gap-1 text-darkGray">
         <Icon name="mdi:calendar" class="text-primary-500 text-2xl" />
         <p>{EVENT_DATE}</p>
@@ -34,6 +32,8 @@ const EVENT_LOCATION = "KX Building, Floor 7 & 8";
       </div>
     </div>
     <div
+      data-aos="fade-up"
+      data-aos-delay="200"
       class="flex flex-col-reverse m-auto md:flex-row gap-2 justify-center items-center md:items-start"
     >
       <a href="#">

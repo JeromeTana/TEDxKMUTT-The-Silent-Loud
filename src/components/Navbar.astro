@@ -15,7 +15,15 @@ import Strip from "@/assets/strip.png";
   />
   <div class="top-0 w-full bg-white shadow-sm">
     <nav class="relative flex justify-between px-4 py-2 items-center">
-      <img id="logo" src={Logo.src} alt="" fetchpriority="high" class="w-40" />
+      <a href="/#">
+        <Image
+          id="logo"
+          src={Logo}
+          alt="Logo of TEDxKMUTT"
+          fetchpriority="high"
+          class="w-40"
+        />
+      </a>
       <ul class="hidden md:flex gap-4 lg:gap-10 text-lg">
         <NavLink href="#speakers" text="Speakers" />
         <NavLink href="#agenda" text="Agenda" />
@@ -29,11 +37,7 @@ import Strip from "@/assets/strip.png";
             iconRight="mdi:arrow-top-right"
           />
         </a>
-        <Button
-          variant="secondary"
-          text="EN"
-          iconLeft="mdi:globe"
-        />
+        <Button variant="secondary" text="EN" iconLeft="mdi:globe" />
       </div>
     </nav>
   </div>

@@ -18,7 +18,10 @@ const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
     title="Speakers"
     header="Meet the Idea Sharers"
   />
-  <div class="relative grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+  <div
+    data-aos="fade-up"
+    class="relative grid md:grid-cols-3 lg:grid-cols-4 gap-4"
+  >
     {
       speakers.map((speaker) => (
         <SpeakerCard

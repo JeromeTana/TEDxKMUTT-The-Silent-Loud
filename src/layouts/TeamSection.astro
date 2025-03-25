@@ -12,7 +12,7 @@ const staffTeams = await sanityClient.fetch<SanityDocument[]>(STAFF_TEAM_QUERY);
   <SectionTitle target="team" title="Our Team" header="Behind the Scene" />
   {
     staffTeams.length > 0 && (
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div data-aos="fade-up" class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {staffTeams.map((team) => (
           <div class="bg-foreground border border-lightGray p-8 rounded-2xl">
             <h3 class="text-2xl font-semibold">{team.title}</h3>
