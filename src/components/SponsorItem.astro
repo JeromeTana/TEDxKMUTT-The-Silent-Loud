@@ -1,0 +1,22 @@
+---
+import { urlFor } from "@/utils/sanity";
+
+interface Props {
+  name: string;
+  url: string;
+  logo: any;
+}
+
+const { name, url, logo } = Astro.props;
+---
+
+<a
+  href={url}
+  target="_blank"
+  class="flex justify-center items-center gap-4 p-8 bg-foreground border border-lightGray rounded-2xl duration-150 hover:bg-neutral-200"
+>
+  <div class="flex flex-col items-center gap-4">
+    {logo && <img src={urlFor(logo)?.width(200).url()} alt="" />}
+    <p class="text-xl">{name}</p>
+  </div>
+</a>

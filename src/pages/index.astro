@@ -1,5 +1,4 @@
 ---
-import Navbar from "@/components/Navbar.astro";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/Container.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
@@ -8,7 +7,6 @@ import { Icon } from "astro-icon/components";
 import Button from "@/components/Button.astro";
 import AgendaLayout from "@/components/AgendaLayout.astro";
 import Accordion from "@/components/Accordion.astro";
-import Marquee from "@/components/Marquee.astro";
 import { Image } from "astro:assets";
 
 import snakeL from "@/assets/Icons/snakeL.svg";
@@ -32,12 +30,17 @@ import logo from "@/assets/logos/Logo.png";
 import type { SanityDocument } from "@sanity/client";
 import { sanityClient } from "sanity:client";
 import { urlFor } from "@/utils/sanity";
+import SponsorItem from "@/components/SponsorItem.astro";
 
 const EVENT_DATE = "26 April 2025";
 const EVENT_LOCATION = "KX Building, Floor 7 & 8";
 
 const SPEAKERS_QUERY = `*[_type == "speaker"]|order(_createdAt asc)`;
 const FAQS_QUERY = `*[_type == "faq"]`;
+const STAFF_TEAM_QUERY = `*[_type == "staffTeam"] {title, staff[] -> {titleEN, titleTH}}`;
+const PLATINUM_SPONSORS_QUERY = `*[_type == "sponsor" && rank == "platinum"]`;
+const GOLD_SPONSORS_QUERY = `*[_type == "sponsor" && rank == "gold"]`;
+const SILVER_SPONSORS_QUERY = `*[_type == "sponsor" && rank == "silver"]`;
 const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
   titleEN,
   titleTH,
@@ -71,6 +74,18 @@ const talkSections =
   await sanityClient.fetch<SanityDocument[]>(TALK_SECTIONS_QUERY);
 const faqs = await sanityClient.fetch<SanityDocument[]>(FAQS_QUERY);
 
+const platinumSponsors = await sanityClient.fetch<SanityDocument[]>(
+  PLATINUM_SPONSORS_QUERY
+);
+const goldSponsors =
+  await sanityClient.fetch<SanityDocument[]>(GOLD_SPONSORS_QUERY);
+const silverSponsors = await sanityClient.fetch<SanityDocument[]>(
+  SILVER_SPONSORS_QUERY
+);
+
+const staffTeams = await sanityClient.fetch<SanityDocument[]>(STAFF_TEAM_QUERY);
+
+console.log(staffTeams);
 ---
 
 <Layout title="The Silent Loud · TEDxKMUTT">
@@ -104,7 +119,9 @@ const faqs = await sanityClient.fetch<SanityDocument[]>(FAQS_QUERY);
             <p>{EVENT_LOCATION}</p>
           </div>
         </div>
-        <div class="flex gap-2 justify-center items-start">
+        <div
+          class="flex flex-col-reverse  m-auto md:flex-row gap-2 justify-center items-center md:items-start"
+        >
           <a href="#">
             <Button
               variant="primary"
@@ -125,7 +142,7 @@ const faqs = await sanityClient.fetch<SanityDocument[]>(FAQS_QUERY);
                   <img
                     src={urlFor(speaker.pfp)?.width(128).height(128).url()}
                     alt=""
-                    class="w-16 bg-neutral-200 border border-lightGray rounded-full"
+                    class="w-16 bg-neutral-200 border-2 border-white rounded-full"
                   />
                 )
             )
@@ -134,19 +151,19 @@ const faqs = await sanityClient.fetch<SanityDocument[]>(FAQS_QUERY);
       </div>
       <div class="relative p-4">
         <div
-          class="max-w-screen-2xl m-auto aspect-video bg-foreground border border-lightGray rounded-3xl mt-16"
+          class="relative max-w-screen-2xl m-auto aspect-video bg-foreground border border-lightGray rounded-3xl mt-16"
         >
+          <Image
+            src={GooseYadom}
+            alt=""
+            width={800}
+            class="absolute -top-40 right-32 -z-10 w-32"
+          />
         </div>
         <img
           src={star.src}
           alt=""
           class="absolute -top-20 -left-32 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite]"
-        />
-        <Image
-          src={GooseYadom}
-          alt=""
-          width={800}
-          class="absolute -top-20 right-32 -z-10 w-32"
         />
       </div>
     </section>
@@ -326,6 +343,78 @@ const faqs = await sanityClient.fetch<SanityDocument[]>(FAQS_QUERY);
       >
         <h3 class="text-6xl font-semibold">Join the Event</h3>
       </div>
+    </Container>
+    <Container>
+      <SectionTitle
+        target="sponsors"
+        title="Our Sponsors"
+        header="Supporting Partners"
+      />
+      <div class="relative max-w-screen-md m-auto space-y-16">
+        {
+          platinumSponsors.length > 0 && (
+            <div class="space-y-4">
+              <h3 class="text-2xl font-semibold">Platinum</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {platinumSponsors.map((sponsor) => (
+                  <SponsorItem
+                    name={sponsor.title}
+                    logo={sponsor.logo}
+                    url={sponsor.website}
+                  />
+                ))}
+              </div>
+            </div>
+          )
+        }{
+          goldSponsors.length > 0 && (
+            <div class="space-y-4">
+              <h3 class="text-2xl font-semibold">Gold</h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {goldSponsors.map((sponsor) => (
+                  <SponsorItem
+                    name={sponsor.title}
+                    logo={sponsor.logo}
+                    url={sponsor.website}
+                  />
+                ))}
+              </div>
+            </div>
+          )
+        }{
+          silverSponsors.length > 0 && (
+            <div class="space-y-4">
+              <h3 class="text-2xl font-semibold">Silver</h3>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                {silverSponsors.map((sponsor) => (
+                  <SponsorItem
+                    name={sponsor.title}
+                    logo={sponsor.logo}
+                    url={sponsor.website}
+                  />
+                ))}
+              </div>
+            </div>
+          )
+        }
+      </div>
+    </Container>
+    <Container>
+      <SectionTitle target="team" title="Our Team" header="Behind the Scene" />
+      {
+        staffTeams.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {staffTeams.map((team) => (
+              <div>
+                <h3>{team.title}</h3>
+                {team.staff.map((staff: any) => (
+                  <p>{staff.titleEN}</p>
+                ))}
+              </div>
+            ))}
+          </div>
+        )
+      }
     </Container>
   </div>
 </Layout>
