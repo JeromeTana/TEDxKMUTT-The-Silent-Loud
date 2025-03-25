@@ -13,7 +13,7 @@ import Button from "./Button.astro";
       <NavLink href="#agenda" text="Agenda" />
       <NavLink href="#faqs" text="FAQs" />
     </ul>
-    <div class="hidden md:flex">
+    <div class="flex">
       <a href="#">
         <Button
           variant="primary"
@@ -22,17 +22,5 @@ import Button from "./Button.astro";
         />
       </a>
     </div>
-    <a id="burger" href="javascript:void(0);" class="md:hidden">
-      <Icon name="mdi:menu" class="text-3xl" />
-    </a>
   </nav>
-  <ul
-    id="myLinks"
-    class="hidden md:!hidden absolute bg-[#00000031] w-full h-screen"
-  >
-    <NavLink href="#about" text="About event" />
-    <NavLink href="#speakers" text="Speakers" />
-    <NavLink href="#agenda" text="Agenda" />
-    <NavLink href="#faqs" text="FAQs" />
-  </ul>
 </div>
