@@ -1,0 +1,77 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import Button from "@/components/Button.astro";
+
+import flower from "@/assets/Icons/Group-3.svg";
+import star from "@/assets/Icons/Group-4.svg";
+import Strip from "@/assets/strip.png";
+import GooseYadom from "@/assets/goose_yadom.png";
+import logo from "@/assets/logos/Logo.png";
+import SpeakersImage from "@/components/SpeakersImage.astro";
+
+const EVENT_DATE = "26 April 2025";
+const EVENT_LOCATION = "KX Building, Floor 7 & 8";
+
+
+---
+
+<section class="relative pt-16">
+  <Image
+    src={Strip}
+    alt=""
+    width={3000}
+    class="fixed -bottom-0 translate-y-16 -right-0 z-10 w-full scale-125"
+  />
+  <img
+    src={flower.src}
+    alt=""
+    class="absolute -top-48 -right-16 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite]"
+  />
+  <div class="max-w-xl m-auto text-center space-y-8">
+    <Image src={logo} alt="The Silent Loud Logo" width={1800} class="w-full" />
+    <div class="flex flex-col items-center gap-2 text-lg">
+      <div class="flex items-center gap-1 text-darkGray">
+        <Icon name="mdi:calendar" class="text-primary-500 text-2xl" />
+        <p>{EVENT_DATE}</p>
+      </div>
+      <div class="flex items-center gap-1 text-darkGray">
+        <Icon name="mdi:map-marker" class="text-primary-500 text-2xl" />
+        <p>{EVENT_LOCATION}</p>
+      </div>
+    </div>
+    <div
+      class="flex flex-col-reverse m-auto md:flex-row gap-2 justify-center items-center md:items-start"
+    >
+      <a href="#">
+        <Button
+          variant="primary"
+          text="Claim my ticket"
+          iconRight="mdi:arrow-top-right"
+          description="Only 300 tickets available"
+        />
+      </a>
+      <a href="#agenda">
+        <Button variant="secondary" text="View agenda" />
+      </a>
+    </div>
+    <SpeakersImage />
+  </div>
+  <div class="relative p-4">
+    <div
+      class="relative max-w-screen-2xl m-auto aspect-video bg-foreground border border-lightGray rounded-3xl mt-16"
+    >
+      <Image
+        src={GooseYadom}
+        alt=""
+        width={800}
+        class="absolute -top-40 right-32 -z-10 w-32"
+      />
+    </div>
+    <img
+      src={star.src}
+      alt=""
+      class="absolute -top-20 -left-32 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite]"
+    />
+  </div>
+</section>

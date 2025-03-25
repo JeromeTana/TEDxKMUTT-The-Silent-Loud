@@ -1,0 +1,43 @@
+---
+import { sanityClient } from "sanity:client";
+import type { SanityDocument } from "@sanity/client";
+
+import shrimpL from "@/assets/Icons/shrimpL.svg";
+import shrimpR from "@/assets/Icons/shrimpR.svg";
+import Container from "@/components/Container.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import SpeakerCard from "@/components/SpeakerCard.astro";
+
+const SPEAKERS_QUERY = `*[_type == "speaker"]|order(_createdAt asc)`;
+const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
+---
+
+<Container>
+  <SectionTitle
+    target="speakers"
+    title="Speakers"
+    header="Meet the Idea Sharers"
+  />
+  <div class="relative grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+    {
+      speakers.map((speaker) => (
+        <SpeakerCard
+          name={speaker.titleEN}
+          title={speaker.roleEN}
+          bio={speaker.bioEN}
+          image={speaker.pfp}
+        />
+      ))
+    }
+    <img
+      src={shrimpL.src}
+      alt=""
+      class="absolute -top-40 -left-40 opacity-20 -z-10 w-64"
+    />
+    <img
+      src={shrimpR.src}
+      alt=""
+      class="absolute -bottom-40 -right-32 opacity-20 -z-10 w-[20rem]"
+    />
+  </div>
+</Container>

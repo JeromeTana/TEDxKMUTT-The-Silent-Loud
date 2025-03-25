@@ -1,0 +1,76 @@
+---
+import Button from "@/components/Button.astro";
+import Container from "@/components/Container.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import target from "@/assets/Icons/Group.svg";
+import GooseTukTuk from "@/assets/goose_tuktuk.png";
+---
+
+<Container>
+  <SectionTitle
+    target="when-and-where"
+    title="When & Where"
+    header="Mark Your Calendar"
+  />
+  <div class="relative grid md:grid-cols-2 gap-4">
+    <img
+      src={target.src}
+      alt=""
+      class="absolute -top-40 -right-32 opacity-20 -z-10 w-[20rem] animate-[pulse_5s_linear_infinite]"
+    />
+    <Image
+      src={GooseTukTuk}
+      alt=""
+      width={800}
+      class="absolute -bottom-20 -right-20 -rotate-12 w-80"
+    />
+    <div class="flex flex-col gap-4">
+      <div class="bg-foreground border border-lightGray rounded-3xl p-8">
+        <div class="inline-flex items-center gap-2">
+          <Icon name="mdi:calendar" class="text-primary-500 text-3xl" />
+          <h2 class="text-2xl font-semibold">26 April 2025</h2>
+        </div>
+        <h3 class="text-xl mt-2 text-darkGray">12:00 - 18:00</h3>
+        <div class="w-fit mt-8">
+          <a href="#agenda">
+            <Button variant="secondary" text="View agenda" />
+          </a>
+        </div>
+      </div>
+      <div class="bg-foreground border border-lightGray rounded-3xl p-8">
+        <div class="inline-flex items-center gap-2">
+          <Icon name="mdi:map-marker" class="text-primary-500 text-3xl" />
+          <h2 class="text-2xl font-semibold">Knownledge Exchange</h2>
+        </div>
+        <h3 class="text-xl mt-2 text-darkGray">Floor 7 & 8</h3>
+        <p class="text-darkGray mt-4">
+          110/1 Krung Thon Buri Road, <br />
+          Bang Lamphu Lang, Khlong San, <br />
+          Bangkok 10600
+        </p>
+        <div class="w-fit mt-8">
+          <a href="https://maps.app.goo.gl/LebcD84CMNj7i4qM7">
+            <Button
+              variant="secondary"
+              text="View on map"
+              iconRight="mdi:arrow-top-right"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bg-foreground h-[32rem] md:h-auto border border-lightGray rounded-3xl overflow-clip"
+    >
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.967595737792!2d100.49578297508964!3d13.720411686668196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e298ee5d02d0a3%3A0xe2511ae461733d57!2sKnowledge%20Exchange%20Center%20(KX)!5e0!3m2!1sen!2sth!4v1742807155241!5m2!1sen!2sth"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="w-full h-full"></iframe>
+    </div>
+  </div>
+</Container>

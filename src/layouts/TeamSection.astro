@@ -1,0 +1,27 @@
+---
+import Container from "@/components/Container.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import type { SanityDocument } from "@sanity/client";
+import { sanityClient } from "sanity:client";
+
+const STAFF_TEAM_QUERY = `*[_type == "staffTeam"] {title, staff[] -> {titleEN, titleTH}}`;
+const staffTeams = await sanityClient.fetch<SanityDocument[]>(STAFF_TEAM_QUERY);
+---
+
+<Container>
+  <SectionTitle target="team" title="Our Team" header="Behind the Scene" />
+  {
+    staffTeams.length > 0 && (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {staffTeams.map((team) => (
+          <div>
+            <h3>{team.title}</h3>
+            {team.staff.map((staff: any) => (
+              <p>{staff.titleEN}</p>
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  }
+</Container>

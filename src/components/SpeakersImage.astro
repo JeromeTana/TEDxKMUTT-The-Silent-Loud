@@ -1,0 +1,22 @@
+---
+import { urlFor } from "@/utils/sanity";
+import type { SanityDocument } from "@sanity/client";
+import { sanityClient } from "sanity:client";
+
+const SPEAKERS_QUERY = `*[_type == "speaker"]|order(_createdAt asc)`;
+const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
+---
+<div class="flex -space-x-4 justify-center items-start">
+  {
+    speakers.map(
+      (speaker) =>
+        speaker.pfp && (
+          <img
+            src={urlFor(speaker.pfp)?.width(128).height(128).url()}
+            alt=""
+            class="w-16 bg-neutral-200 border-2 border-white rounded-full"
+          />
+        )
+    )
+  }
+</div>

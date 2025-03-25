@@ -1,0 +1,64 @@
+---
+import AgendaLayout from "@/components/AgendaLayout.astro";
+import Container from "@/components/Container.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import type { SanityDocument } from "@sanity/client";
+import { sanityClient } from "sanity:client";
+import bigStar from "@/assets/Icons/Vector.svg";
+
+const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
+  titleEN,
+  titleTH,
+  startTime,
+  endTime,
+  talks[] -> {
+    titleEN,
+    titleTH,
+    descriptionEN,
+    descriptionTH,
+    startTime,
+    endTime,
+    speaker->{
+      titleEN,
+      titleTH,
+      roleEN,
+      roleTH,
+      bioEN,
+      bioTH,
+      pfp{
+        asset->{
+          url
+        }
+      },
+    }
+  }
+}`;
+const talkSections =
+  await sanityClient.fetch<SanityDocument[]>(TALK_SECTIONS_QUERY);
+---
+
+<Container>
+  <SectionTitle
+    target="agenda"
+    title="Agenda"
+    header="Amazing Talks in a Day"
+  />
+  <div class="relative space-y-16">
+    <img
+      src={bigStar.src}
+      alt=""
+      class="absolute -top-40 -right-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
+    />
+    {
+      talkSections.map((section, index) => (
+        <AgendaLayout
+          title={section.titleEN}
+          startTime={section.talks[0].startTime}
+          endTime={section.talks[section.talks.length - 1].endTime}
+          talks={section.talks}
+          index={index}
+        />
+      ))
+    }
+  </div>
+</Container>
