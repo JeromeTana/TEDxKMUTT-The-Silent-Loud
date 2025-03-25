@@ -1,6 +1,7 @@
 ---
 import { urlFor } from "@/utils/sanity";
 import { Icon } from "astro-icon/components";
+import { randomBgColor } from "@/utils/randomColor";
 
 interface Props {
   title: string;
@@ -43,7 +44,7 @@ const { title, description, startTime, speaker } = Astro.props;
               <img
                 src={urlFor(speaker.pfp)?.width(250).height(250).url()}
                 alt={speaker.titleEN}
-                class="w-6 h-6 rounded-full bg-neutral-200 border"
+                class={"w-6 h-6 rounded-full border " + randomBgColor()}
               />
             ) : (
               <div class="w-6 h-6 rounded-full bg-neutral-200" />

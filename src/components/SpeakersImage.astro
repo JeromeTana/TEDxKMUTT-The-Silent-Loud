@@ -2,6 +2,7 @@
 import { urlFor } from "@/utils/sanity";
 import type { SanityDocument } from "@sanity/client";
 import { sanityClient } from "sanity:client";
+import { randomBgColor } from "@/utils/randomColor";
 
 const SPEAKERS_QUERY = `*[_type == "speaker"]|order(_createdAt asc)`;
 const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
@@ -14,7 +15,7 @@ const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
           <img
             src={urlFor(speaker.pfp)?.width(128).height(128).url()}
             alt=""
-            class="w-16 bg-neutral-200 border-2 border-white rounded-full"
+            class={"w-16 border-2 border-white rounded-full " + randomBgColor()}
           />
         )
     )
