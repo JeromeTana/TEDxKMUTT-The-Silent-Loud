@@ -14,11 +14,13 @@ const staffTeams = await sanityClient.fetch<SanityDocument[]>(STAFF_TEAM_QUERY);
     staffTeams.length > 0 && (
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {staffTeams.map((team) => (
-          <div>
-            <h3>{team.title}</h3>
-            {team.staff.map((staff: any) => (
-              <p>{staff.titleEN}</p>
-            ))}
+          <div class="bg-foreground border border-lightGray p-8 rounded-2xl">
+            <h3 class="text-2xl font-semibold">{team.title}</h3>
+            <div class="mt-4">
+              {team.staff.map((staff: any) => (
+                <p>{staff.titleEN}</p>
+              ))}
+            </div>
           </div>
         ))}
       </div>
