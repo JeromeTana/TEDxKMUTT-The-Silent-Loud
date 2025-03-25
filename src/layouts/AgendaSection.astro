@@ -6,6 +6,10 @@ import type { SanityDocument } from "@sanity/client";
 import { sanityClient } from "sanity:client";
 import bigStar from "@/assets/Icons/Vector.svg";
 
+import flower from "@/assets/Icons/Group-3.svg";
+import star from "@/assets/Icons/Group-4.svg";
+import lotus from "@/assets/Icons/Group-5.svg";
+
 const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
   titleEN,
   titleTH,
@@ -35,6 +39,8 @@ const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
 }`;
 const talkSections =
   await sanityClient.fetch<SanityDocument[]>(TALK_SECTIONS_QUERY);
+
+const icons = [flower, star, lotus, bigStar];
 ---
 
 <Container>
@@ -56,7 +62,7 @@ const talkSections =
           startTime={section.talks[0].startTime}
           endTime={section.talks[section.talks.length - 1].endTime}
           talks={section.talks}
-          index={index}
+          spinIcon={icons[index]}
         />
       ))
     }

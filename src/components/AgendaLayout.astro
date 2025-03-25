@@ -1,9 +1,6 @@
 ---
 import AgendaItem from "./AgendaItem.astro";
-import flower from "@/assets/Icons/Group-3.svg";
-import star from "@/assets/Icons/Group-4.svg";
-import lotus from "@/assets/Icons/Group-5.svg";
-import bigStar from "@/assets/Icons/Vector.svg";
+
 import { Icon } from "astro-icon/components";
 
 interface Props {
@@ -11,56 +8,58 @@ interface Props {
   startTime: string;
   endTime: string;
   talks: any;
-  index?: number;
+  spinIcon: any;
 }
 
-const { title, startTime, endTime, talks, index } = Astro.props;
-
-const icons = [flower, star, lotus, bigStar];
+const { title, startTime, endTime, talks, spinIcon } = Astro.props;
 ---
 
-{
-  (
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between">
-      <div>
-        <div class="sticky top-32">
-          <div class="inline-flex items-center gap-4">
-            {index !== null && (
-              <img
-                src={icons[index!].src}
-                alt=""
-                class="w-10 animate-[spin_10s_linear_infinite]"
-              />
-            )}
-            <h1 class="text-4xl font-bold">{title}</h1>
-          </div>
-          <p class="text-darkGray text-xl ml-14 mt-2 flex items-center gap-2">
-            <Icon name="mdi:clock-outline" />
-            {new Date(startTime).toLocaleTimeString("en-US", {
-              hourCycle: "h24",
-              hour: "2-digit",
-              minute: "2-digit",
-            })}{" "}
-            -{" "}
-            {new Date(endTime).toLocaleTimeString("en-US", {
-              hourCycle: "h24",
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </p>
-        </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between">
+  <div>
+    <div class="sticky top-32">
+      <div class="inline-flex items-center gap-4">
+        {
+          spinIcon !== null && (
+            <img
+              src={spinIcon.src}
+              alt=""
+              class="w-10 animate-[spin_10s_linear_infinite]"
+            />
+          )
+        }
+        <h1 class="text-4xl font-bold">{title}</h1>
       </div>
-      <div class="space-y-4">
-        {talks.map((talk: any) => (
-          <AgendaItem
-            title={talk.titleEN}
-            description={talk.descriptionEN}
-            startTime={talk.startTime}
-            endTime={talk.endTime}
-            speaker={talk.speaker}
-          />
-        ))}
-      </div>
+      <p class="text-darkGray text-xl ml-14 mt-2 flex items-center gap-2">
+        <Icon name="mdi:clock-outline" />
+        {
+          new Date(startTime).toLocaleTimeString("en-US", {
+            hourCycle: "h24",
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        }{" "}
+        -{" "}
+        {
+          new Date(endTime).toLocaleTimeString("en-US", {
+            hourCycle: "h24",
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        }
+      </p>
     </div>
-  )
-}
+  </div>
+  <div class="space-y-4">
+    {
+      talks.map((talk: any) => (
+        <AgendaItem
+          title={talk.titleEN}
+          description={talk.descriptionEN}
+          startTime={talk.startTime}
+          endTime={talk.endTime}
+          speaker={talk.speaker}
+        />
+      ))
+    }
+  </div>
+</div>
