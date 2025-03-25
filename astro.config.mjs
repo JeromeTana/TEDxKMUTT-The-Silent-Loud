@@ -7,8 +7,18 @@ import cloudflare from '@astrojs/cloudflare';
 
 import icon from 'astro-icon';
 
+import sanity from '@sanity/astro';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), icon()],
-  adapter: cloudflare()
+  integrations: [
+    tailwind(),
+    icon(),
+    sanity({
+      projectId: "dy6scvxw",
+      dataset: "public",
+      useCdn: false, // for static builds
+    }),
+  ],
+  adapter: cloudflare(),
 });

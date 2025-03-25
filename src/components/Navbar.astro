@@ -1,26 +1,35 @@
 ---
-import { Icon } from "astro-icon/components";
 import Logo from "../assets/logos/TEDxKMUTT_b.png";
 import NavLink from "./NavLink.astro";
 import Button from "./Button.astro";
+import { Image } from "astro:assets";
+import Strip from "@/assets/strip.png";
 ---
 
-<div class="sticky top-0 w-full bg-white shadow-sm z-10">
-  <nav class="flex justify-between p-4 items-center">
-    <img id="logo" src={Logo.src} alt="" fetchpriority="high" class="w-40" />
-    <ul class="hidden md:flex gap-4 lg:gap-10 text-lg">
-      <NavLink href="#speakers" text="Speakers" />
-      <NavLink href="#agenda" text="Agenda" />
-      <NavLink href="#faqs" text="FAQs" />
-    </ul>
-    <div class="flex">
-      <a href="#">
-        <Button
-          variant="primary"
-          text="Claim your tickets"
-          iconRight="mdi:arrow-top-right"
-        />
-      </a>
-    </div>
-  </nav>
+<div class="sticky top-0 z-50 overflow-x-clip">
+  <Image
+    src={Strip}
+    alt=""
+    width={3000}
+    class="absolute -bottom-2 -right-0 -z-10 w-full scale-125"
+  />
+  <div class="top-0 w-full bg-white shadow-sm">
+    <nav class="relative flex justify-between p-4 items-center">
+      <img id="logo" src={Logo.src} alt="" fetchpriority="high" class="w-40" />
+      <ul class="hidden md:flex gap-4 lg:gap-10 text-lg">
+        <NavLink href="#speakers" text="Speakers" />
+        <NavLink href="#agenda" text="Agenda" />
+        <NavLink href="#faqs" text="FAQs" />
+      </ul>
+      <div class="flex">
+        <a href="#">
+          <Button
+            variant="primary"
+            text="Claim my ticket"
+            iconRight="mdi:arrow-top-right"
+          />
+        </a>
+      </div>
+    </nav>
+  </div>
 </div>

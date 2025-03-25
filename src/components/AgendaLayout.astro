@@ -4,44 +4,63 @@ import flower from "@/assets/Icons/Group-3.svg";
 import star from "@/assets/Icons/Group-4.svg";
 import lotus from "@/assets/Icons/Group-5.svg";
 import bigStar from "@/assets/Icons/Vector.svg";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   title: string;
-  description: string;
-  time?: string;
-  items?: Props[];
-  speaker?: { name: string; image: string };
+  startTime: string;
+  endTime: string;
+  talks: any;
   index?: number;
 }
 
-const { title, description, time, items, index } = Astro.props;
+const { title, startTime, endTime, talks, index } = Astro.props;
 
 const icons = [flower, star, lotus, bigStar];
 ---
 
 {
-  items ? (
+  (
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between">
       <div>
-        <div class="sticky top-32 inline-flex items-center gap-4">
-          {index !== null && (
-            <img
-              src={icons[index!].src}
-              alt=""
-              class="w-10 animate-[spin_10s_linear_infinite]"
-            />
-          )}
-          <h1 class="text-4xl font-bold">{title}</h1>
-          {/* <p class="text-slate-500">{description}</p> */}
+        <div class="sticky top-32">
+          <div class="inline-flex items-center gap-4">
+            {index !== null && (
+              <img
+                src={icons[index!].src}
+                alt=""
+                class="w-10 animate-[spin_10s_linear_infinite]"
+              />
+            )}
+            <h1 class="text-4xl font-bold">{title}</h1>
+          </div>
+          <p class="text-darkGray text-xl ml-14 mt-2 flex items-center gap-2">
+            <Icon name="mdi:clock-outline" />
+            {new Date(startTime).toLocaleTimeString("en-US", {
+              hourCycle: "h24",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}{" "}
+            -{" "}
+            {new Date(endTime).toLocaleTimeString("en-US", {
+              hourCycle: "h24",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </p>
         </div>
       </div>
       <div class="space-y-4">
-        {items.map((item) => (
-          <AgendaItem {...item} />
+        {talks.map((talk: any) => (
+          <AgendaItem
+            title={talk.titleEN}
+            description={talk.descriptionEN}
+            startTime={talk.startTime}
+            endTime={talk.endTime}
+            speaker={talk.speaker}
+          />
         ))}
       </div>
     </div>
-  ) : (
-    <AgendaItem time={time} title={title} description={description} />
   )
 }

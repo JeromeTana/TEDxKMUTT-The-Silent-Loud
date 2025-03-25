@@ -22,262 +22,73 @@ import wave from "@/assets/Icons/Vector-1.svg";
 import bigStar from "@/assets/Icons/Vector.svg";
 import target from "@/assets/Icons/Group.svg";
 
+import Strip from "@/assets/strip.png";
 import GooseYadom from "@/assets/goose_yadom.png";
 import GooseMuay from "@/assets/goose_muay.png";
 import GooseTukTuk from "@/assets/goose_tuktuk.png";
 
 import logo from "@/assets/logos/Logo.png";
 
+import type { SanityDocument } from "@sanity/client";
+import { sanityClient } from "sanity:client";
+
 const EVENT_DATE = "26 April 2025";
 const EVENT_LOCATION = "KX Building, Floor 7 & 8";
 
-const mockSpeakerInfo = [
-  {
-    name: "John Doe",
-    title: "CEO of Company",
-    socials: [
-      { title: "Facebook", url: "#", icon: "mdi:facebook" },
-      { title: "Twitter", url: "#", icon: "mdi:twitter" },
-      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-    ],
-  },
-  {
-    name: "Jane Doe",
-    title: "CTO of Company",
-    socials: [
-      { title: "Facebook", url: "#", icon: "mdi:facebook" },
-      { title: "Twitter", url: "#", icon: "mdi:twitter" },
-      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-    ],
-  },
-  {
-    name: "John Smith",
-    title: "CFO of Company",
-    socials: [
-      { title: "Facebook", url: "#", icon: "mdi:facebook" },
-      { title: "Twitter", url: "#", icon: "mdi:twitter" },
-      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-    ],
-  },
-  {
-    name: "John Smith",
-    title: "CFO of Company",
-    socials: [
-      { title: "Facebook", url: "#", icon: "mdi:facebook" },
-      { title: "Twitter", url: "#", icon: "mdi:twitter" },
-      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-    ],
-  },
-  {
-    name: "John Smith",
-    title: "CFO of Company",
-    socials: [
-      { title: "Facebook", url: "#", icon: "mdi:facebook" },
-      { title: "Twitter", url: "#", icon: "mdi:twitter" },
-      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-    ],
-  },
-  {
-    name: "John Smith",
-    title: "CFO of Company",
-    socials: [
-      { title: "Facebook", url: "#", icon: "mdi:facebook" },
-      { title: "Twitter", url: "#", icon: "mdi:twitter" },
-      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-    ],
-  },
-  {
-    name: "John Smith",
-    title: "CFO of Company",
-    socials: [
-      { title: "Facebook", url: "#", icon: "mdi:facebook" },
-      { title: "Twitter", url: "#", icon: "mdi:twitter" },
-      { title: "LinkedIn", url: "#", icon: "mdi:linkedin" },
-    ],
-  },
-];
+const SPEAKERS_QUERY = `*[_type == "speaker"]|order(_createdAt asc)`;
+const FAQS_QUERY = `*[_type == "faq"]`;
+const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
+  titleEN,
+  titleTH,
+  startTime,
+  endTime,
+  talks[] -> {
+    titleEN,
+    titleTH,
+    descriptionEN,
+    descriptionTH,
+    startTime,
+    endTime,
+    speaker->{
+      titleEN,
+      titleTH,
+      roleEN,
+      roleTH,
+      bioEN,
+      bioTH,
+      pfp{
+        asset->{
+          url
+        }
+      },
+    }
+  }
+}`;
 
-const mockAgenda = [
-  {
-    title: "Welcome",
-    description: "Get your name tags and find your seats",
-    items: [
-      {
-        time: "12:00",
-        title: "Registration",
-        description: "Get your name tags and find your seats",
-      },
-      {
-        time: "12:00",
-        title: "Opening Ceremony",
-        description: "Get your name tags and find your seats",
-      },
-    ],
-  },
-  {
-    title: "Section 1",
-    description: "Get your name tags and find your seats",
-    items: [
-      {
-        time: "12:30",
-        title: "First Talks",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        speaker: {
-          name: "John Doe",
-          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        },
-      },
-      {
-        time: "12:45",
-        title: "Second Talks",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        speaker: {
-          name: "John Doe",
-          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        },
-      },
-      {
-        time: "13:00",
-        title: "Third Talks",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        speaker: {
-          name: "John Doe",
-          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        },
-      },
-    ],
-  },
-  {
-    title: "Section 2",
-    description: "Get your name tags and find your seats",
-    items: [
-      {
-        time: "12:30",
-        title: "First Talks",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        speaker: {
-          name: "John Doe",
-          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        },
-      },
-      {
-        time: "12:45",
-        title: "Second Talks",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        speaker: {
-          name: "John Doe",
-          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        },
-      },
-      {
-        time: "13:00",
-        title: "Third Talks",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        speaker: {
-          name: "John Doe",
-          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        },
-      },
-    ],
-  },
-  {
-    title: "Section 3",
-    description: "Get your name tags and find your seats",
-    type: "group",
-    items: [
-      {
-        time: "12:30",
-        title: "First Talks",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        speaker: {
-          name: "John Doe",
-          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        },
-      },
-      {
-        time: "12:45",
-        title: "Second Talks",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        speaker: {
-          name: "John Doe",
-          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        },
-      },
-      {
-        time: "13:00",
-        title: "Third Talks",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        speaker: {
-          name: "John Doe",
-          image: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-        },
-      },
-    ],
-  },
-];
-
-const mockFaqs = [
-  {
-    question: "What is the event about?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    question: "How can I join the event?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    question: "What is the event about?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    question: "What is the event about?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    question: "What is the event about?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    question: "What is the event about?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    question: "What is the event about?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    question: "What is the event about?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullam",
-  },
-];
+const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
+const talkSections =
+  await sanityClient.fetch<SanityDocument[]>(TALK_SECTIONS_QUERY);
+const faqs = await sanityClient.fetch<SanityDocument[]>(FAQS_QUERY);
 ---
 
 <Layout title="The Silent Loud · TEDxKMUTT">
-  <div class="bg-primary-500 text-white py-2">
-    <Marquee
-      content="Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with Infinite Marquee with long sentence Infinite Marquee with long sentence Infinite Marquee with long sentence"
-    />
-  </div>
-  <Navbar />
   <div class="space-y-64 overflow-clip">
     <section class="relative pt-16">
+      <Image
+        src={Strip}
+        alt=""
+        width={3000}
+        class="fixed -bottom-0 translate-y-16 -right-0 z-10 w-full scale-125"
+      />
       <img
         src={flower.src}
         alt=""
-        class="absolute -top-48 -right-16 opacity-20 -z-10 w-[24rem] animate-[spin_10s_linear_infinite]"
+        class="absolute -top-48 -right-16 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite]"
       />
       <div class="max-w-xl m-auto text-center space-y-8">
         <Image
           src={logo}
-          alt={"The Silent Loud Logo"}
+          alt="The Silent Loud Logo"
           width={1800}
           class="w-full"
         />
@@ -295,7 +106,7 @@ const mockFaqs = [
           <a href="#">
             <Button
               variant="primary"
-              text="Claim your tickets"
+              text="Claim my ticket"
               iconRight="mdi:arrow-top-right"
               description="Only 300 tickets available"
             />
@@ -313,13 +124,13 @@ const mockFaqs = [
         <img
           src={star.src}
           alt=""
-          class="absolute -top-20 -left-32 opacity-20 -z-10 w-[24rem] animate-[spin_10s_linear_infinite]"
+          class="absolute -top-20 -left-32 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite]"
         />
         <Image
           src={GooseYadom}
           alt=""
           width={800}
-          class="absolute -top-32 right-32 -z-10 w-[12rem]"
+          class="absolute -top-20 right-32 -z-10 w-32"
         />
       </div>
     </section>
@@ -359,7 +170,16 @@ const mockFaqs = [
         header="Meet the Idea Sharers"
       />
       <div class="relative grid md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {mockSpeakerInfo.map((speaker) => <SpeakerCard {...speaker} />)}
+        {
+          speakers.map((speaker) => (
+            <SpeakerCard
+              name={speaker.titleEN}
+              title={speaker.roleEN}
+              bio={speaker.bioEN}
+              image={speaker.pfp}
+            />
+          ))
+        }
         <img
           src={shrimpL.src}
           alt=""
@@ -376,7 +196,7 @@ const mockFaqs = [
       <SectionTitle
         target="when-and-where"
         title="When & Where"
-        header="Event details"
+        header="Mark Your Calendar"
       />
       <div class="relative grid md:grid-cols-2 gap-4">
         <img
@@ -444,7 +264,7 @@ const mockFaqs = [
       <SectionTitle
         target="agenda"
         title="Agenda"
-        header="Amazing talks in a day"
+        header="Amazing Talks in a Day"
       />
       <div class="relative space-y-16">
         <img
@@ -453,8 +273,14 @@ const mockFaqs = [
           class="absolute -top-40 -right-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
         />
         {
-          mockAgenda.map((agenda, index) => (
-            <AgendaLayout {...agenda} index={index} />
+          talkSections.map((section, index) => (
+            <AgendaLayout
+              title={section.titleEN}
+              startTime={section.talks[0].startTime}
+              endTime={section.talks[section.talks.length - 1].endTime}
+              talks={section.talks}
+              index={index}
+            />
           ))
         }
       </div>
@@ -463,7 +289,7 @@ const mockFaqs = [
       <SectionTitle
         target="faqs"
         title="FAQs"
-        header="Answers to your questions"
+        header="Answers for Your Questions"
       />
       <div class="relative max-w-screen-md m-auto space-y-4">
         <img
@@ -472,8 +298,8 @@ const mockFaqs = [
           class="absolute -bottom-40 -left-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
         />
         {
-          mockFaqs.map((faq) => (
-            <Accordion title={faq.question} content={faq.answer} />
+          faqs.map((faq) => (
+            <Accordion title={faq.questionEN} content={faq.answerEN} />
           ))
         }
       </div>

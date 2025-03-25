@@ -1,43 +1,57 @@
 ---
+import { urlFor } from "@/utils/sanity";
 import { Icon } from "astro-icon/components";
 
 interface Props {
-    title: string;
-    description: string;
-    time?: string;
-    speaker?: { name: string; image: string };
+  title: string;
+  description: string;
+  startTime: string;
+  endTime: string;
+  speaker?: { titleEN: string; pfp: string };
 }
 
-const { title, description, time, speaker } = Astro.props;
+const { title, description, startTime, speaker } = Astro.props;
 ---
 
 <div
-    class="flex flex-col w-full md:flex-row md:items-center gap-4 md:gap-10 bg-foreground duration-200 border border-lightGray p-4 rounded-2xl md:p-6"
+  class="flex flex-col w-full md:flex-row md:items-center gap-4 md:gap-10 bg-foreground duration-200 border border-lightGray p-4 rounded-2xl md:p-6"
 >
-    <div class="flex items-center gap-2 text-primary-500">
-        <Icon name="mdi:clock-outline" />
-        <p>{time}</p>
+  <div class="flex items-center gap-2 text-primary-500">
+    <Icon name="mdi:clock-outline" />
+    <p>
+      {
+        new Date(startTime).toLocaleTimeString("en-US", {
+          hourCycle: "h24",
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      }
+    </p>
+  </div>
+  <div>
+    <div>
+      <h2 class="text-xl font-semibold">
+        {title}
+      </h2>
+      <p class="text-slate-500">{description}</p>
     </div>
-    <div class="space-y-4">
-        <div>
-            <h2 class="text-xl font-medium">
-                {title}
-            </h2>
-            <p class="text-slate-500">{description}</p>
-        </div>
-        <div>
-            {
-                speaker && (
-                    <div class="flex items-center gap-2">
-                        <img
-                            src={speaker.image}
-                            alt={speaker.name}
-                            class="w-6 h-6 rounded-full"
-                        />
-                        <p class="text-sm">{speaker.name}</p>
-                    </div>
-                )
-            }
-        </div>
+    <div>
+      {
+        speaker && (
+          <div class="flex items-center gap-2 mt-4">
+            {speaker.pfp ? (
+              <img
+                src={urlFor(speaker.pfp)?.width(250).height(250).url()}
+                alt={speaker.titleEN}
+                class="w-6 h-6 rounded-full bg-neutral-200 border"
+              />
+            ) : (
+              <div class="w-6 h-6 rounded-full bg-neutral-200" />
+            )}
+            <p class="text-sm">{speaker.titleEN}</p>
+          </div>
+        )
+      }
     </div>
+  </div>
 </div>

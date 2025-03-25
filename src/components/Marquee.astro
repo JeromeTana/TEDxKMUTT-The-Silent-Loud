@@ -1,17 +1,11 @@
 ---
 interface Props {
-    content: string;
+  content: string;
 }
 
 const { content } = Astro.props;
 ---
 
-<div class="marquee h-6 relative w-[100vw] max-w-full overflow-hidden">
-    <div
-        class="track absolute whitespace-nowrap will-change-transform animate-[marquee_32s_linear_infinite]"
-    >
-        <div class="content">
-            {content}
-        </div>
-    </div>
+<div class="text-center">
+  {content}
 </div>
