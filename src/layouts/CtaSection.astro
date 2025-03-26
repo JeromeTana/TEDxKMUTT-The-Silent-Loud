@@ -1,12 +1,41 @@
 ---
 import Container from "@/components/Container.astro";
+import Button from "@/components/Button.astro";
+import { Image } from "astro:assets";
+import CtaBg from "@/assets/cta_bg.png";
 ---
 
 <Container>
   <div
     data-aos="fade-up"
-    class="flex justify-center items-center aspect-video bg-foreground border border-lightGray p-4 rounded-3xl text-center"
+    class="relative flex flex-col justify-center items-center gap-8 aspect-video bg-blue border border-lightGray p-8 rounded-3xl text-center mt-32 overflow-clip"
   >
-    <h3 class="text-6xl font-semibold">Join the Event</h3>
+    <Image
+      src={CtaBg}
+      alt="CTA Background"
+      width={800}
+      class="absolute top-0 left-0 w-full -z-20 grayscale"
+    />
+    <div
+      class="absolute top-0 left-0 w-full h-full bg-purple mix-blend-color -z-10"
+    >
+    </div>
+    <div class="space-y-4">
+      <h3
+        class="text-white text-6xl font-semibold font-['Bricolage_Grotesque']"
+      >
+        Shaping Tomorrow, Honoring Today
+      </h3>
+      <p class="text-lightGray text-xl">
+        Tickets available now. Get your ticket and see you at the event!
+      </p>
+    </div>
+    <a href="/#">
+      <Button
+        variant="primary"
+        text="Get my ticket"
+        iconRight="mdi:arrow-top-right"
+      />
+    </a>
   </div>
 </Container>
