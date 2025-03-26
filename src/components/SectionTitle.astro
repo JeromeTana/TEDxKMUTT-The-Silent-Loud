@@ -1,20 +1,17 @@
 ---
 interface Props {
   title: string;
-  header: string;
-  description?: string;
   target: string;
 }
 
-const { title, header, description, target } = Astro.props;
+const { title, target } = Astro.props;
 ---
 
-<div data-aos="fade-up" id={target} class="text-center space-y-4 mb-16 pt-32">
-  <div>
-    <small class="p-2 text-primary-500 text-xl font-medium">{title}</small>
-  </div>
-  <h2 class="text-4xl md:text-6xl font-semibold font-['Bricolage_Grotesque']">
-    {header}
-  </h2>
-  <p class="max-w-screen-sm m-auto text-slate-500">{description}</p>
+<div data-aos="fade-up" id={target} class="text-center space-y-4 mb-8 md:mb-16 pt-32">
+  <small
+    class="py-1 px-4 uppercase text-white bg-primary-500 border border-black rounded-full font-bold"
+  >
+    {title}
+  </small>
+  <slot />
 </div>

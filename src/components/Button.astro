@@ -12,9 +12,10 @@ interface Props {
 const { text, description, variant, iconLeft, iconRight } = Astro.props;
 
 const variantClasses = {
-  primary: "bg-primary-500 group-hover:bg-primary-600 text-white",
+  primary:
+    "bg-primary-500 group-hover:bg-primary-600 text-white border border-b-4 border-black active:border-b active:translate-y-1",
   secondary:
-    "bg-white group-hover:bg-neutral-100 text-primary-500 border border-lightGray",
+    "bg-white group-hover:bg-neutral-100 text-primary-500 border border-b-4 border-black active:border-b active:translate-y-1",
 };
 ---
 

@@ -12,14 +12,16 @@ const faqs = await sanityClient.fetch<SanityDocument[]>(FAQS_QUERY);
 ---
 
 <Container>
-  <SectionTitle
-    target="faqs"
-    title="FAQs"
-    header="Answers for Your Questions"
-  />
+  <SectionTitle target="faqs" title="FAQs">
+    <h2
+      class="text-4xl text-black md:text-6xl font-semibold font-['Bricolage_Grotesque']"
+    >
+      Answer to your Questions
+    </h2>
+  </SectionTitle>
   <div data-aos="fade-up" class="relative max-w-screen-md m-auto space-y-4">
     <Lotus
-      class="absolute -bottom-40 -left-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite] text-primary-500"
+      class="absolute -bottom-40 -left-32 -z-10 w-[20rem] animate-[spin_10s_linear_infinite_reverse] text-primary-500"
     />
     {
       faqs.map((faq) => (

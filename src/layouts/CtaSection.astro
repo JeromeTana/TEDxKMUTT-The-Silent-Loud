@@ -8,14 +8,16 @@ import CtaBg from "@/assets/cta_bg.png";
 <Container>
   <div
     data-aos="fade-up"
-    class="relative flex flex-col justify-center items-center gap-8 aspect-video bg-blue border border-lightGray p-8 rounded-3xl text-center mt-32 overflow-clip"
+    class="relative flex flex-col justify-center items-center gap-8 aspect-video bg-blue border border-lightGray p-8 py-32 rounded-3xl text-center mt-32 overflow-clip"
   >
-    <Image
-      src={CtaBg}
-      alt="CTA Background"
-      width={800}
-      class="absolute top-0 left-0 w-full -z-20 grayscale"
-    />
+    <div class="absolute top-0 left-0 w-full !h-full -z-20">
+      <Image
+        src={CtaBg}
+        alt="CTA Background"
+        width={1200}
+        class="object-cover w-full !h-full"
+      />
+    </div>
     <div
       class="absolute top-0 left-0 w-full h-full bg-purple mix-blend-color -z-10"
     >

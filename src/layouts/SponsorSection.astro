@@ -20,11 +20,11 @@ const silverSponsors = await sanityClient.fetch<SanityDocument[]>(
 ---
 
 <Container>
-  <SectionTitle
-    target="sponsors"
-    title="Our Sponsors"
-    header="Supporting Partners"
-  />
+  <SectionTitle target="sponsors" title="Our Sponsors">
+    <h2 class="text-4xl md:text-6xl font-semibold font-['Bricolage_Grotesque']">
+      Supporting Partners
+    </h2>
+  </SectionTitle>
   <div class="relative max-w-screen-md m-auto space-y-16">
     {
       platinumSponsors.length > 0 && (

@@ -10,25 +10,19 @@ import logo from "@/assets/logos/Logo.png";
 import SpeakersImage from "@/components/SpeakersImage.astro";
 
 const EVENT_DATE = "26 April 2025";
-const EVENT_LOCATION = "KX Building, Floor 7 & 8";
+const EVENT_LOCATION = "KX Building";
 ---
 
 <section class="relative pt-16">
   <Flower
-    class="absolute -top-48 -right-16 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite] text-primary-500"
+    class="absolute -top-48 -right-16 opacity-20 w-[24rem] animate-[spin_10s_linear_infinite_reverse] text-primary-500"
   />
-  <div class="max-w-xl m-auto text-center space-y-8">
-    <Image src={logo} alt="The Silent Loud Logo" width={1800} class="w-full" />
-    <div data-aos="fade-up" class="flex flex-col items-center gap-2 text-lg">
-      <div class="flex items-center gap-1 text-darkGray">
-        <Icon name="mdi:calendar" class="text-primary-500 text-2xl" />
-        <p>{EVENT_DATE}</p>
-      </div>
-      <div class="flex items-center gap-1 text-darkGray">
-        <Icon name="mdi:map-marker" class="text-primary-500 text-2xl" />
-        <p>{EVENT_LOCATION}</p>
-      </div>
-    </div>
+  <Star
+    class="absolute -bottom-64 -left-32 opacity-20 w-[24rem] animate-[spin_10s_linear_infinite] text-primary-500"
+  />
+  <div class="max-w-3xl m-auto text-center space-y-16">
+    <Image src={logo} alt="The Silent Loud Logo" width={2400} class="w-full z-10" />
+   
     <div
       data-aos="fade-up"
       data-aos-delay="200"
@@ -37,20 +31,19 @@ const EVENT_LOCATION = "KX Building, Floor 7 & 8";
       <a href="#">
         <Button
           variant="primary"
-          text="Claim my ticket"
+          text="Get my ticket"
           iconRight="mdi:arrow-top-right"
-          description="Only 300 tickets available"
         />
       </a>
       <a href="#agenda">
         <Button variant="secondary" text="View agenda" />
       </a>
     </div>
-    <SpeakersImage />
+    <!-- <SpeakersImage /> -->
   </div>
-  <div class="relative p-4">
+  <!-- <div class="relative p-4">
     <div
-      class="relative max-w-screen-2xl m-auto aspect-video bg-foreground border border-lightGray rounded-3xl mt-16"
+      class="relative max-w-screen-2xl m-auto aspect-video bg-foreground border border-black rounded-3xl mt-16"
     >
       <Image
         src={GooseYadom}
@@ -62,5 +55,5 @@ const EVENT_LOCATION = "KX Building, Floor 7 & 8";
     <Star
       class="absolute -top-20 -left-32 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite] text-primary-500"
     />
-  </div>
+  </div> -->
 </section>

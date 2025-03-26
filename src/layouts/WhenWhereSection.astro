@@ -9,14 +9,14 @@ import GooseTukTuk from "@/assets/goose_tuktuk.png";
 ---
 
 <Container>
-  <SectionTitle
-    target="when-and-where"
-    title="When & Where"
-    header="Mark Your Calendar"
-  />
+  <SectionTitle target="when-and-where" title="When & Where">
+    <h2 class="text-4xl md:text-6xl font-semibold font-['Bricolage_Grotesque']">
+      Mark Your Calendar
+    </h2>
+  </SectionTitle>
   <div data-aos="fade-up" class="relative grid md:grid-cols-2 gap-4">
     <Target
-      class="absolute -top-40 -right-32 opacity-20 -z-10 w-[20rem] animate-[pulse_5s_linear_infinite] text-green"
+      class="absolute -top-40 -right-32 -z-10 w-[20rem] animate-[pulse_5s_linear_infinite] text-primary-500"
     />
     <Image
       src={GooseTukTuk}
@@ -25,7 +25,7 @@ import GooseTukTuk from "@/assets/goose_tuktuk.png";
       class="absolute -bottom-20 -right-20 -rotate-12 w-64 md:w-80"
     />
     <div class="flex flex-col gap-4">
-      <div class="bg-foreground border border-lightGray rounded-3xl p-8">
+      <div class="bg-foreground border border-black rounded-3xl p-8">
         <div class="inline-flex items-center gap-2">
           <Icon name="mdi:calendar" class="text-primary-500 text-3xl" />
           <h2 class="text-2xl font-semibold">26 April 2025</h2>
@@ -37,7 +37,7 @@ import GooseTukTuk from "@/assets/goose_tuktuk.png";
           </a>
         </div>
       </div>
-      <div class="bg-foreground border border-lightGray rounded-3xl p-8">
+      <div class="bg-foreground border border-black rounded-3xl p-8">
         <div class="inline-flex items-center gap-2">
           <Icon name="mdi:map-marker" class="text-primary-500 text-3xl" />
           <h2 class="text-2xl font-semibold">Knownledge Exchange</h2>
@@ -60,7 +60,7 @@ import GooseTukTuk from "@/assets/goose_tuktuk.png";
       </div>
     </div>
     <div
-      class="bg-foreground h-[32rem] md:h-auto border border-lightGray rounded-3xl overflow-clip"
+      class="bg-foreground h-[32rem] md:h-auto border border-black rounded-3xl overflow-clip"
     >
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.967595737792!2d100.49578297508964!3d13.720411686668196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e298ee5d02d0a3%3A0xe2511ae461733d57!2sKnowledge%20Exchange%20Center%20(KX)!5e0!3m2!1sen!2sth!4v1742807155241!5m2!1sen!2sth"

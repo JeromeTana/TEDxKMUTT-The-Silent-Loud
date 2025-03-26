@@ -29,11 +29,11 @@ const { title, startTime, endTime, talks, index } = Astro.props;
       <div class="inline-flex items-center gap-4">
         {
           index === 0 ? (
-            <BigStar class="text-purple w-10 h-fit animate-[spin_10s_linear_infinite]" />
+            <BigStar class="text-primary-500 w-10 h-fit animate-[spin_10s_linear_infinite]" />
           ) : index === 1 ? (
-            <Lotus class="text-green w-10 h-fit animate-[spin_10s_linear_infinite]" />
+            <Lotus class="text-primary-500 w-10 h-fit animate-[spin_10s_linear_infinite]" />
           ) : (
-            <Star class="text-orange w-10 h-fit animate-[spin_10s_linear_infinite]" />
+            <Star class="text-primary-500 w-10 h-fit animate-[spin_10s_linear_infinite]" />
           )
         }
         <h1

@@ -23,17 +23,17 @@ const { name, title, bio, image, socials } = Astro.props;
 ---
 
 <div
-  class="card bg-foreground border-lightGray flex md:flex-col gap-6 items-start md:items-center md:text-center p-6 border rounded-2xl md:rounded-3xl"
+  class="card bg-foreground border border-black flex md:flex-col gap-6 items-start md:items-center md:text-center p-6 rounded-2xl md:rounded-3xl"
 >
-  <div class={`border-2 rounded-full p-1 ` + randomBorderColor()}>
+  <div class={`border-2 rounded-full p-1 border-primary-500` }>
     {
       image ? (
         <img
           src={urlFor(image)?.width(250).height(250).url()}
           alt=""
           class={
-            "rounded-full w-24 md:w-36 md:m-auto border border-lightGray " +
-            randomBgColor()
+            "rounded-full w-24 md:w-36 md:m-auto border border-darkGray bg-background" 
+            // + randomBgColor()
           }
         />
       ) : (

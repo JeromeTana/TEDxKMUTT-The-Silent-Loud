@@ -12,31 +12,35 @@ const SPEAKERS_QUERY = `*[_type == "speaker"]|order(_createdAt asc)`;
 const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
 ---
 
-<Container>
-  <SectionTitle
-    target="speakers"
-    title="Speakers"
-    header="Meet the Idea Sharers"
-  />
-  <div
-    data-aos="fade-up"
-    class="relative grid md:grid-cols-3 lg:grid-cols-4 gap-4"
-  >
-    {
-      speakers.map((speaker) => (
-        <SpeakerCard
-          name={speaker.titleEN}
-          title={speaker.roleEN}
-          bio={speaker.bioEN}
-          image={speaker.pfp}
-        />
-      ))
-    }
-    <ShrimpL
-      class="absolute -top-40 -left-40 opacity-20 -z-10 w-64 text-purple"
-    />
-    <ShrimpR
-      class="absolute -bottom-40 -right-32 opacity-20 -z-10 w-[20rem] text-purple"
-    />
-  </div>
-</Container>
+<div class="bg-blu">
+  <Container>
+    <SectionTitle target="speakers" title="Speakers">
+      <h2
+        class="text-4xl md:text-6xl font-semibold font-['Bricolage_Grotesque']"
+      >
+        Meet The Idea Sharers
+      </h2>
+    </SectionTitle>
+    <div
+      data-aos="fade-up"
+      class="relative grid md:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
+      {
+        speakers.map((speaker) => (
+          <SpeakerCard
+            name={speaker.titleEN}
+            title={speaker.roleEN}
+            bio={speaker.bioEN}
+            image={speaker.pfp}
+          />
+        ))
+      }
+      <ShrimpL
+        class="absolute -top-40 -left-40 opacity- -z-10 w-64 text-primary-500"
+      />
+      <ShrimpR
+        class="absolute -bottom-40 -right-32 opacity- -z-10 w-[20rem] text-primary-500"
+      />
+    </div>
+  </Container>
+</div>
