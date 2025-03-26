@@ -11,7 +11,7 @@ const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
 <div
   data-aos="fade-up"
   data-aos-delay="300"
-  class="flex -space-x-4 justify-center items-start"
+  class="flex flex-wrap -space-x-4 justify-center items-start"
 >
   {
     speakers.map(
