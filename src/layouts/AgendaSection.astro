@@ -4,11 +4,11 @@ import Container from "@/components/Container.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
 import type { SanityDocument } from "@sanity/client";
 import { sanityClient } from "sanity:client";
-import bigStar from "@/assets/Icons/Vector.svg";
+import bigStar from "@/assets/Icons/bigStar.astro";
 
-import flower from "@/assets/Icons/Group-3.svg";
-import star from "@/assets/Icons/Group-4.svg";
-import lotus from "@/assets/Icons/Group-5.svg";
+import flower from "@/assets/Icons/flower.astro";
+import star from "@/assets/Icons/star.astro";
+import lotus from "@/assets/Icons/lotus.astro";
 
 const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
   titleEN,
