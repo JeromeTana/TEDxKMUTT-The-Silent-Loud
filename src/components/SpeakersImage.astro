@@ -20,7 +20,7 @@ const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
           <img
             src={urlFor(speaker.pfp)?.width(128).height(128).url()}
             alt=""
-            class={"w-16 border-2 border-white rounded-full " + randomBgColor()}
+            class={"w-12 border-2 border-white rounded-full " + randomBgColor()}
           />
         )
     )

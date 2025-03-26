@@ -1,30 +1,30 @@
 export const randomBorderColor = () => {
   const colors = [
-    "border-blue-700",
-    "border-green-600",
-    "border-orange-600",
-    "border-pink-600",
+    "border-blue",
+    "border-green",
+    "border-orange",
+    "border-pink",
   ];
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
 export const randomTextColor = () => {
   const colors = [
-    "text-blue-700",
-    "text-green-600",
-    "text-orange-600",
-    "text-pink-600",
+    "text-blue",
+    "text-green",
+    "text-orange",
+    "text-pink",
   ];
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
 export const randomBgColor = () => {
   const colors = [
-    "bg-blue-700",
-    "bg-green-600",
-    "bg-orange-600",
-    "bg-pink-600",
-    "bg-yellow-500",
+    "bg-blue",
+    "bg-green",
+    "bg-orange",
+    "bg-pink",
+    "bg-yellow",
   ];
   return colors[Math.floor(Math.random() * colors.length)];
 };

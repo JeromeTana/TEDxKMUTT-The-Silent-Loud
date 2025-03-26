@@ -2,8 +2,8 @@
 import { sanityClient } from "sanity:client";
 import type { SanityDocument } from "@sanity/client";
 
-import shrimpL from "@/assets/Icons/shrimpL.astro";
-import shrimpR from "@/assets/Icons/shrimpR.astro";
+import ShrimpL from "@/assets/Icons/shrimpL.astro";
+import ShrimpR from "@/assets/Icons/shrimpR.astro";
 import Container from "@/components/Container.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
 import SpeakerCard from "@/components/SpeakerCard.astro";
@@ -32,15 +32,11 @@ const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
         />
       ))
     }
-    <img
-      src={shrimpL.src}
-      alt=""
-      class="absolute -top-40 -left-40 opacity-20 -z-10 w-64"
+    <ShrimpL
+      class="absolute -top-40 -left-40 opacity-20 -z-10 w-64 text-purple"
     />
-    <img
-      src={shrimpR.src}
-      alt=""
-      class="absolute -bottom-40 -right-32 opacity-20 -z-10 w-[20rem]"
+    <ShrimpR
+      class="absolute -bottom-40 -right-32 opacity-20 -z-10 w-[20rem] text-purple"
     />
   </div>
 </Container>

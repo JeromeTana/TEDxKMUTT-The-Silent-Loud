@@ -15,6 +15,8 @@ export default {
         foreground: "#F7F7F7",
         darkGray: "#666666",
         lightGray: "#A4A4A4",
+        blue: "#2350A0",
+        pink: "#ED8FAD",
       },
       keyframes: {
         marquee: {

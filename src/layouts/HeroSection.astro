@@ -3,8 +3,8 @@ import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import Button from "@/components/Button.astro";
 
-import flower from "@/assets/Icons/Group-3.astro";
-import star from "@/assets/Icons/Group-4.astro";
+import Flower from "@/assets/Icons/flower.astro";
+import Star from "@/assets/Icons/star.astro";
 import GooseYadom from "@/assets/goose_yadom.png";
 import logo from "@/assets/logos/Logo.png";
 import SpeakersImage from "@/components/SpeakersImage.astro";
@@ -14,10 +14,8 @@ const EVENT_LOCATION = "KX Building, Floor 7 & 8";
 ---
 
 <section class="relative pt-16">
-  <img
-    src={flower.src}
-    alt=""
-    class="absolute -top-48 -right-16 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite]"
+  <Flower
+    class="absolute -top-48 -right-16 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite] text-primary-500"
   />
   <div class="max-w-xl m-auto text-center space-y-8">
     <Image src={logo} alt="The Silent Loud Logo" width={1800} class="w-full" />
@@ -61,10 +59,8 @@ const EVENT_LOCATION = "KX Building, Floor 7 & 8";
         class="absolute -top-40 right-32 -z-10 w-32"
       />
     </div>
-    <img
-      src={star.src}
-      alt=""
-      class="absolute -top-20 -left-32 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite]"
+    <Star
+      class="absolute -top-20 -left-32 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite] text-primary-500"
     />
   </div>
 </section>

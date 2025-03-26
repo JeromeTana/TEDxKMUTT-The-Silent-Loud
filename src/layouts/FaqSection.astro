@@ -4,7 +4,7 @@ import Container from "@/components/Container.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
 import type { SanityDocument } from "@sanity/client";
 import { sanityClient } from "sanity:client";
-import lotus from "@/assets/Icons/Group-5.astro";
+import Lotus from "@/assets/Icons/flower.astro";
 
 const FAQS_QUERY = `*[_type == "faq"]`;
 
@@ -18,10 +18,8 @@ const faqs = await sanityClient.fetch<SanityDocument[]>(FAQS_QUERY);
     header="Answers for Your Questions"
   />
   <div data-aos="fade-up" class="relative max-w-screen-md m-auto space-y-4">
-    <img
-      src={lotus.src}
-      alt=""
-      class="absolute -bottom-40 -left-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
+    <Lotus
+      class="absolute -bottom-40 -left-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite] text-primary-500"
     />
     {
       faqs.map((faq) => (

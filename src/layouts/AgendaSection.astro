@@ -4,11 +4,7 @@ import Container from "@/components/Container.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
 import type { SanityDocument } from "@sanity/client";
 import { sanityClient } from "sanity:client";
-import bigStar from "@/assets/Icons/bigStar.astro";
-
-import flower from "@/assets/Icons/flower.astro";
-import star from "@/assets/Icons/star.astro";
-import lotus from "@/assets/Icons/lotus.astro";
+import BigStar from "@/assets/Icons/bigStar.astro";
 
 const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
   titleEN,
@@ -40,7 +36,6 @@ const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
 const talkSections =
   await sanityClient.fetch<SanityDocument[]>(TALK_SECTIONS_QUERY);
 
-const icons = [flower, star, lotus, bigStar];
 ---
 
 <Container>
@@ -50,10 +45,8 @@ const icons = [flower, star, lotus, bigStar];
     header="Amazing Talks in a Day"
   />
   <div class="relative space-y-16">
-    <img
-      src={bigStar.src}
-      alt=""
-      class="absolute -top-40 -right-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite]"
+    <BigStar
+      class="absolute -top-40 -right-32 opacity-20 -z-10 w-[20rem] animate-[spin_10s_linear_infinite] text-yellow"
     />
     {
       talkSections.map((section, index) => (
@@ -62,7 +55,7 @@ const icons = [flower, star, lotus, bigStar];
           startTime={section.talks[0].startTime}
           endTime={section.talks[section.talks.length - 1].endTime}
           talks={section.talks}
-          spinIcon={icons[index]}
+          index={index}
         />
       ))
     }
