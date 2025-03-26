@@ -7,11 +7,13 @@ interface Props {
 const { title, target } = Astro.props;
 ---
 
-<div data-aos="fade-up" id={target} class="text-center space-y-4 mb-8 md:mb-16 pt-32">
-  <small
-    class="py-1 px-4 uppercase text-white bg-primary-500 border border-black rounded-full font-bold"
-  >
-    {title}
-  </small>
-  <slot />
+<div id={target} class="text-center mb-8 md:mb-16 pt-32">
+  <div data-aos="fade-up" class="space-y-4">
+    <small
+      class="py-1 px-4 uppercase text-white bg-primary-500 border border-black rounded-full font-bold"
+    >
+      {title}
+    </small>
+    <slot />
+  </div>
 </div>
