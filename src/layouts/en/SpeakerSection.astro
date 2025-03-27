@@ -33,6 +33,12 @@ const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
       data-aos="fade-up"
       class="relative grid md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
+      <ShrimpL
+        class="absolute hidden md:block -top-40 -left-40 opacity- -z-10 w-64 text-purple"
+      />
+      <ShrimpR
+        class="absolute hidden md:block -top-40 -right-40 opacity- -z-10 w-64 text-purple"
+      />
       {
         speakers.map((speaker) => (
           <SpeakerCard
@@ -43,12 +49,6 @@ const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
           />
         ))
       }
-      <ShrimpL
-        class="absolute -top-40 -left-40 opacity- -z-10 w-64 text-purple"
-      />
-      <ShrimpR
-        class="absolute -top-40 -right-40 opacity- -z-10 w-64 text-purple"
-      />
     </div>
   </Container>
 </div>
