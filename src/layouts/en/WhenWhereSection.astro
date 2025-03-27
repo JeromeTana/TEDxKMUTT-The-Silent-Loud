@@ -19,15 +19,15 @@ import Kratong from "@/assets/kratong.png";
   <Container>
     <SectionTitle target="when-and-where" title="When & Where">
       <h2
-        class="text-4xl text-white md:text-6xl font-semibold font-['Bricolage_Grotesque']"
+        class="relative text-4xl text-white md:text-6xl font-semibold font-['Bricolage_Grotesque']"
       >
         Mark Your Calendar
+        <Target
+          class="absolute -top-16 -right-32 -z-10 w-[20rem] text-yellow"
+        />
       </h2>
     </SectionTitle>
     <div data-aos="fade-up" class="relative grid md:grid-cols-2 gap-4">
-      <Target
-        class="absolute -top-40 -right-32 -z-10 w-[20rem] text-yellow"
-      />
       <Image
         src={GooseTukTuk}
         alt=""
