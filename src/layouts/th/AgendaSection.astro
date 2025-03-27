@@ -1,0 +1,58 @@
+---
+import AgendaLayout from "@/components/th/AgendaLayout.astro";
+import Container from "@/components/Container.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import type { SanityDocument } from "@sanity/client";
+import { sanityClient } from "sanity:client";
+import BigStar from "@/assets/Icons/bigStar.astro";
+
+const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
+  titleTH,
+  startTime,
+  endTime,
+  talks[] -> {
+    titleTH,
+    descriptionTH,
+    startTime,
+    endTime,
+    speaker->{
+      titleTH,
+      roleTH,
+      bioTH,
+      pfp{
+        asset->{
+          url
+        }
+      },
+    }
+  }
+}`;
+const talkSections =
+  await sanityClient.fetch<SanityDocument[]>(TALK_SECTIONS_QUERY);
+---
+
+<div class="bg-[#ffd77a]">
+  <Container>
+    <SectionTitle target="agenda" title="Agenda">
+      <h2 class="text-4xl md:text-6xl font-semibold font-['Noto_Serif_Thai']">
+        พบกับทอล์คที่น่าสนใจ
+      </h2>
+    </SectionTitle>
+    <div class="relative space-y-16">
+      <BigStar
+        class="absolute -top-40 -right-32 w-[20rem] -z-10 animate-[spin_10s_linear_infinite] text-yellow"
+      />
+      {
+        talkSections.map((section, index) => (
+          <AgendaLayout
+            title={section.titleTH}
+            startTime={section.talks[0].startTime}
+            endTime={section.talks[section.talks.length - 1].endTime}
+            talks={section.talks}
+            index={index}
+          />
+        ))
+      }
+    </div>
+  </Container>
+</div>

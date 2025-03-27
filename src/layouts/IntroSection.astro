@@ -8,6 +8,7 @@ import SnakeR from "@/assets/Icons/snakeR.astro";
 import GooseMuay from "@/assets/goose_muay.png";
 import Button from "@/components/Button.astro";
 import { Icon } from "astro-icon/components";
+import CtaButton from "@/components/CtaButton.astro";
 
 const EVENT_DATE = "26 April 2025";
 const EVENT_LOCATION = "KX Building";
@@ -49,11 +50,7 @@ const EVENT_LOCATION = "KX Building";
         </p>
       </div>
       <div class="w-fit mt-8">
-        <Button
-          variant="primary"
-          text="Get my ticket"
-          iconRight="mdi:arrow-top-right"
-        />
+        <CtaButton />
       </div>
       <div data-aos="fade-up" class="mt-12">
         <div class="flex justify-between text-4xl">

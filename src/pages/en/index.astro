@@ -1,0 +1,39 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import SpeakerSection from "@/layouts/en/SpeakerSection.astro";
+import WhenWhereSection from "@/layouts/en/WhenWhereSection.astro";
+import AgendaSection from "@/layouts/en/AgendaSection.astro";
+import SponsorSection from "@/layouts/en/SponsorSection.astro";
+import HeroSection from "@/layouts/HeroSection.astro";
+import IntroSection from "@/layouts/IntroSection.astro";
+import TeamSection from "@/layouts/en/TeamSection.astro";
+import CtaSection from "@/layouts/en/CtaSection.astro";
+import FaqSection from "@/layouts/en/FaqSection.astro";
+
+---
+
+<Layout title="The Silent Loud · TEDxKMUTT">
+  <HeroSection />
+  <!-- <IntroSection /> -->
+  <SpeakerSection />
+  <WhenWhereSection />
+  <AgendaSection />
+  <FaqSection />
+  <CtaSection />
+  <TeamSection />
+  <SponsorSection />
+  <script>
+    import AOS from "aos";
+    import "aos/dist/aos.css";
+
+    AOS.init({
+      anchorPlacement: "top-bottom",
+      offset: 100,
+      easing: "ease-in-out-back",
+      duration: 1000,
+      once: true,
+    });
+    window.addEventListener("load", AOS.refresh);
+  </script>
+</Layout>

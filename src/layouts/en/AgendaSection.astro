@@ -1,5 +1,5 @@
 ---
-import AgendaLayout from "@/components/AgendaLayout.astro";
+import AgendaLayout from "@/components/en/AgendaLayout.astro";
 import Container from "@/components/Container.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
 import type { SanityDocument } from "@sanity/client";
@@ -8,23 +8,17 @@ import BigStar from "@/assets/Icons/bigStar.astro";
 
 const TALK_SECTIONS_QUERY = `*[_type == "talkSection"] {
   titleEN,
-  titleTH,
   startTime,
   endTime,
   talks[] -> {
     titleEN,
-    titleTH,
     descriptionEN,
-    descriptionTH,
     startTime,
     endTime,
     speaker->{
       titleEN,
-      titleTH,
       roleEN,
-      roleTH,
       bioEN,
-      bioTH,
       pfp{
         asset->{
           url
@@ -37,7 +31,7 @@ const talkSections =
   await sanityClient.fetch<SanityDocument[]>(TALK_SECTIONS_QUERY);
 ---
 
-<div class="bg-[#ffdb87]">
+<div class="bg-[#ffd77a]">
   <Container>
     <SectionTitle target="agenda" title="Agenda">
       <h2

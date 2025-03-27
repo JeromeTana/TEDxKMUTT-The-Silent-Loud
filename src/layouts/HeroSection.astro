@@ -6,11 +6,13 @@ import Button from "@/components/Button.astro";
 import Flower from "@/assets/Icons/flower.astro";
 import Star from "@/assets/Icons/star.astro";
 import logo from "@/assets/logos/Logo.png";
-import SpeakersImage from "@/components/SpeakersImage.astro";
 import GooseYadom from "@/assets/goose_yadom.png";
+import CtaButton from "@/components/CtaButton.astro";
 
-const EVENT_DATE = "26 April 2025";
-const EVENT_LOCATION = "KX Building";
+const currentPath = Astro.url.pathname;
+
+const EVENT_DATE = currentPath === "/en" ? "26 April 2025" : "26 เมษายน 2568";
+const EVENT_LOCATION = currentPath === "/en" ? "KX Building" : "อาคาร KX";
 ---
 
 <section class="relative pt-16 mb-32">
@@ -18,13 +20,13 @@ const EVENT_LOCATION = "KX Building";
     src={GooseYadom}
     alt=""
     width={800}
-    class="absolute -bottom-80 right-20 w-48"
+    class="absolute -bottom-80 right-20 w-48 hidden md:block"
   />
   <Flower
-    class="absolute -top-48 -right-16 opacity-20 w-[24rem] animate-[spin_10s_linear_infinite_reverse] text-primary-500"
+    class="absolute -top-48 -right-16 opacity-2 w-[24rem] animate-[spin_10s_linear_infinite_reverse] text-yellow"
   />
   <Star
-    class="absolute -bottom-64 -left-32 opacity-20 w-[24rem] animate-[spin_10s_linear_infinite] text-primary-500"
+    class="absolute -bottom-64 -left-32 opacity-2 w-[24rem] animate-[spin_10s_linear_infinite] text-purple"
   />
   <div class="max-w-3xl m-auto text-center">
     <Image
@@ -51,9 +53,13 @@ const EVENT_LOCATION = "KX Building";
       <!-- <SnakeL class="w-16 h-fit text-primary-500" /> -->
       <!-- <SnakeR class="w-16 h-fit text-primary-500" /> -->
       <p class="mt-4 text-xl text-darkGray">
-        We all have a superpower, it just needs to be discovered. And that's
+        {
+          currentPath === "/en"
+            ? `We all have a superpower, it just needs to be discovered. And that's
         what we're here for. Join us in this journey of self-discovery and
-        empowerment.
+        empowerment.`
+            : `เราทุกคนมีพลังพิเศษ แต่มันต้องการให้ค้นพบ และนั่นคือเหตุผลที่เรามาที่นี่`
+        }
       </p>
     </div>
     <div
@@ -61,15 +67,12 @@ const EVENT_LOCATION = "KX Building";
       data-aos-delay="200"
       class="flex flex-col-reverse m-auto md:flex-row gap-2 justify-center items-center md:items-start mt-8"
     >
-      <a href="#">
-        <Button
-          variant="primary"
-          text="Get my ticket"
-          iconRight="mdi:arrow-top-right"
-        />
-      </a>
+      <CtaButton />
       <a href="#agenda">
-        <Button variant="secondary" text="View agenda" />
+        <Button
+          variant="secondary"
+          text={currentPath === "/en" ? "View agenda" : "ดูตารางรายการ"}
+        />
       </a>
     </div>
     <div
@@ -78,15 +81,15 @@ const EVENT_LOCATION = "KX Building";
     >
       <div class="text-start">
         <p class="font-semibold">200+</p>
-        <p class="text-xl">Seats</p>
+        <p class="text-xl">{currentPath === "/en" ? "Seats" : "ที่นั่ง"}</p>
       </div>
       <div class="text-start">
         <p class="font-semibold">12</p>
-        <p class="text-xl">Talks</p>
+        <p class="text-xl">{currentPath === "/en" ? "Talks" : "ทอล์ค"}</p>
       </div>
       <div class="text-start">
         <p class="font-semibold">2</p>
-        <p class="text-xl">Shows</p>
+        <p class="text-xl">{currentPath === "/en" ? "Shows" : "การแสดง"}</p>
       </div>
     </div>
     <!-- <SpeakersImage /> -->

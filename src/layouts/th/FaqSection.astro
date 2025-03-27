@@ -1,0 +1,35 @@
+---
+import Accordion from "@/components/Accordion.astro";
+import Container from "@/components/Container.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import type { SanityDocument } from "@sanity/client";
+import { sanityClient } from "sanity:client";
+import Lotus from "@/assets/Icons/flower.astro";
+
+const FAQS_QUERY = `*[_type == "faq"]`;
+
+const faqs = await sanityClient.fetch<SanityDocument[]>(FAQS_QUERY);
+---
+
+<Container>
+  <SectionTitle target="faqs" title="FAQs">
+    <h2
+      class="text-4xl text-black md:text-6xl font-semibold font-['Noto_Serif_Thai']"
+    >
+      คำถามที่พบบ่อย
+    </h2>
+  </SectionTitle>
+  <div
+    data-aos="fade-up"
+    class="relative max-w-screen-md m-auto space-y-4 font-['Noto_Serif_Thai']"
+  >
+    <Lotus
+      class="absolute -bottom-40 -left-32 -z-10 w-[20rem] animate-[spin_10s_linear_infinite_reverse] text-primary-500"
+    />
+    {
+      faqs.map((faq) => (
+        <Accordion title={faq.questionTH} content={faq.answerTH} />
+      ))
+    }
+  </div>
+</Container>

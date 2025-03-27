@@ -1,0 +1,78 @@
+---
+import AgendaItem from "@/components/AgendaItem.astro";
+
+import { Icon } from "astro-icon/components";
+
+import BigStar from "@/assets/Icons/bigStar.astro";
+
+import Flower from "@/assets/Icons/flower.astro";
+import Star from "@/assets/Icons/star.astro";
+import Lotus from "@/assets/Icons/lotus.astro";
+
+interface Props {
+  title: string;
+  startTime: string;
+  endTime: string;
+  talks: any;
+  index: number;
+}
+
+const { title, startTime, endTime, talks, index } = Astro.props;
+---
+
+<div
+  data-aos="fade-up"
+  class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between"
+>
+  <div>
+    <div
+      class="sticky top-32 bg-foreground rounded-2xl border border-black p-8 w-full"
+    >
+      <div class="inline-flex items-center gap-4">
+        {
+          index === 0 ? (
+            <BigStar class="text-primary-500 w-10 h-fit animate-[spin_10s_linear_infinite]" />
+          ) : index === 1 ? (
+            <Lotus class="text-primary-500 w-10 h-fit animate-[spin_10s_linear_infinite]" />
+          ) : (
+            <Star class="text-primary-500 w-10 h-fit animate-[spin_10s_linear_infinite]" />
+          )
+        }
+        <h1 class="text-2xl md:text-4xl font-semibold font-['Noto_Serif_Thai']">
+          {title}
+        </h1>
+      </div>
+      <p class="text-darkGray text-xl ml-14 mt-2 flex items-center gap-2">
+        <Icon name="mdi:clock-outline" />
+        {
+          new Date(startTime).toLocaleTimeString("en-US", {
+            hourCycle: "h24",
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        }{" "}
+        -{" "}
+        {
+          new Date(endTime).toLocaleTimeString("en-US", {
+            hourCycle: "h24",
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        }
+      </p>
+    </div>
+  </div>
+  <div class="space-y-4">
+    {
+      talks.map((talk: any) => (
+        <AgendaItem
+          title={talk.titleTH}
+          description={talk.descriptionTH}
+          startTime={talk.startTime}
+          endTime={talk.endTime}
+          speaker={talk.speaker}
+        />
+      ))
+    }
+  </div>
+</div>

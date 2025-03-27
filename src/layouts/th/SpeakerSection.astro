@@ -1,0 +1,54 @@
+---
+import { sanityClient } from "sanity:client";
+import type { SanityDocument } from "@sanity/client";
+
+import ShrimpL from "@/assets/Icons/shrimpL.astro";
+import ShrimpR from "@/assets/Icons/shrimpR.astro";
+import Container from "@/components/Container.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import SpeakerCard from "@/components/SpeakerCard.astro";
+import OrangeFlower from "@/assets/orange_flower.png";
+import { Image } from "astro:assets";
+
+const SPEAKERS_QUERY = `*[_type == "speaker"]|order(_createdAt asc)`;
+const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
+---
+
+<div class="relative bg-blue overflow-clip">
+  <Image
+    src={OrangeFlower}
+    alt=""
+    width={800}
+    class="absolute bottom-10 -right-20 w-[24rem] md:w-[36rem]"
+  />
+  <Container>
+    <SectionTitle target="speakers" title="Speakers">
+      <h2
+        class="text-4xl text-white md:text-6xl font-semibold font-['Noto_Serif_Thai']"
+      >
+        พบกับผู้พูด
+      </h2>
+    </SectionTitle>
+    <div
+      data-aos="fade-up"
+      class="relative grid md:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
+      {
+        speakers.map((speaker) => (
+          <SpeakerCard
+            name={speaker.titleTH}
+            title={speaker.roleTH}
+            bio={speaker.bioTH}
+            image={speaker.pfp}
+          />
+        ))
+      }
+      <ShrimpL
+        class="absolute -top-40 -left-40 opacity- -z-10 w-64 text-purple"
+      />
+      <ShrimpR
+        class="absolute -top-40 -right-40 opacity- -z-10 w-64 text-purple"
+      />
+    </div>
+  </Container>
+</div>

@@ -4,6 +4,9 @@ import NavLink from "./NavLink.astro";
 import Button from "./Button.astro";
 import { Image } from "astro:assets";
 import Strip from "@/assets/strip.png";
+import CtaButton from "./CtaButton.astro";
+
+const currentPath = Astro.url.pathname;
 ---
 
 <div class="sticky top-0 z-50 overflow-x-clip">
@@ -25,19 +28,34 @@ import Strip from "@/assets/strip.png";
         />
       </a>
       <ul class="hidden md:flex gap-4 lg:gap-10 text-lg">
-        <NavLink href="#speakers" text="Speakers" />
-        <NavLink href="#agenda" text="Agenda" />
-        <NavLink href="#faqs" text="FAQs" />
+        <NavLink
+          href="#speakers"
+          text={currentPath === "/en" ? "Speakers" : "รายชื่อผู้พูด"}
+        />
+        <NavLink
+          href="#agenda"
+          text={currentPath === "/en" ? "Agenda" : "ตารางรายการ"}
+        />
+        <NavLink
+          href="#faqs"
+          text={currentPath === "/en" ? "FAQs" : "คำถามที่พบบ่อย"}
+        />
       </ul>
       <div class="flex gap-2">
-        <a href="#">
-          <Button
-            variant="primary"
-            text="Get my ticket"
-            iconRight="mdi:arrow-top-right"
-          />
-        </a>
-        <Button variant="secondary" text="EN" iconLeft="mdi:globe" />
+        <div class="hidden md:block">
+          <CtaButton />
+        </div>
+        {
+          currentPath === "/en" ? (
+            <a href="/th">
+              <Button variant="secondary" text="EN" iconLeft="mdi:globe" />
+            </a>
+          ) : (
+            <a href="/en">
+              <Button variant="secondary" text="TH" iconLeft="mdi:globe" />
+            </a>
+          )
+        }
       </div>
     </nav>
   </div>

@@ -1,0 +1,76 @@
+---
+import Container from "@/components/Container.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import SponsorItem from "@/components/SponsorItem.astro";
+import type { SanityDocument } from "@sanity/client";
+import { sanityClient } from "sanity:client";
+
+const PLATINUM_SPONSORS_QUERY = `*[_type == "sponsor" && rank == "platinum"]`;
+const GOLD_SPONSORS_QUERY = `*[_type == "sponsor" && rank == "gold"]`;
+const SILVER_SPONSORS_QUERY = `*[_type == "sponsor" && rank == "silver"]`;
+
+const platinumSponsors = await sanityClient.fetch<SanityDocument[]>(
+  PLATINUM_SPONSORS_QUERY
+);
+const goldSponsors =
+  await sanityClient.fetch<SanityDocument[]>(GOLD_SPONSORS_QUERY);
+const silverSponsors = await sanityClient.fetch<SanityDocument[]>(
+  SILVER_SPONSORS_QUERY
+);
+---
+
+<Container>
+  <SectionTitle target="sponsors" title="Our Sponsors">
+    <h2 class="text-4xl md:text-6xl font-semibold font-['Noto_Serif_Thai']">
+      ผู้สนับสนุน
+    </h2>
+  </SectionTitle>
+  <div class="relative max-w-screen-md m-auto space-y-16">
+    {
+      platinumSponsors.length > 0 && (
+        <div data-aos="fade-up" class="space-y-4">
+          <h3 class="text-2xl font-semibold">Platinum</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {platinumSponsors.map((sponsor) => (
+              <SponsorItem
+                name={sponsor.title}
+                logo={sponsor.logo}
+                url={sponsor.website}
+              />
+            ))}
+          </div>
+        </div>
+      )
+    }{
+      goldSponsors.length > 0 && (
+        <div data-aos="fade-up" class="space-y-4">
+          <h3 class="text-2xl font-semibold">Gold</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {goldSponsors.map((sponsor) => (
+              <SponsorItem
+                name={sponsor.title}
+                logo={sponsor.logo}
+                url={sponsor.website}
+              />
+            ))}
+          </div>
+        </div>
+      )
+    }{
+      silverSponsors.length > 0 && (
+        <div data-aos="fade-up" class="space-y-4">
+          <h3 class="text-2xl font-semibold">Silver</h3>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {silverSponsors.map((sponsor) => (
+              <SponsorItem
+                name={sponsor.title}
+                logo={sponsor.logo}
+                url={sponsor.website}
+              />
+            ))}
+          </div>
+        </div>
+      )
+    }
+  </div>
+</Container>

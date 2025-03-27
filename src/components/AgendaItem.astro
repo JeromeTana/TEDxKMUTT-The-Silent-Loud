@@ -12,6 +12,8 @@ interface Props {
 }
 
 const { title, description, startTime, speaker } = Astro.props;
+
+const currentPath = Astro.url.pathname;
 ---
 
 <div
@@ -31,7 +33,10 @@ const { title, description, startTime, speaker } = Astro.props;
   </div>
   <div>
     <div>
-      <h2 class="text-xl font-semibold">
+      <h2
+        class={"text-xl font-semibold" +
+          (currentPath === "/th" ? "font-['Noto_Serif_Thai']" : "")}
+      >
         {title}
       </h2>
       <p class="text-slate-500">{description}</p>

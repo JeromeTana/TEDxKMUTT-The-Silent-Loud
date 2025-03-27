@@ -1,0 +1,13 @@
+---
+import Button from "./Button.astro";
+
+const currentPath = Astro.url.pathname;
+---
+
+<a href="#">
+  <Button
+    variant="primary"
+    text={currentPath === "/en" ? "Get my ticket" : "ซื้อบัตรเลย"}
+    iconRight="mdi:arrow-top-right"
+  />
+</a>
