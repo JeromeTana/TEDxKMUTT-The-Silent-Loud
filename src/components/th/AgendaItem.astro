@@ -10,7 +10,7 @@ interface Props {
   description: string;
   startTime: string;
   endTime: string;
-  speaker?: { titleEN: string; pfp: string };
+  speaker?: { titleTH: string; pfp: string };
 }
 
 const { title, description, startTime, speaker } = Astro.props;
@@ -41,13 +41,13 @@ const startTimeFormatted = moment(startTime).tz("Asia/Bangkok").format("HH:mm");
             {speaker.pfp ? (
               <img
                 src={urlFor(speaker.pfp)?.width(250).height(250).url()}
-                alt={speaker.titleEN}
+                alt={speaker.titleTH}
                 class={"w-6 h-6 rounded-full border " + randomBgColor()}
               />
             ) : (
               <div class="w-6 h-6 rounded-full bg-neutral-200" />
             )}
-            <p class="text-sm">{speaker.titleEN}</p>
+            <p class="text-sm">{speaker.titleTH}</p>
           </div>
         )
       }
