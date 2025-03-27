@@ -5,28 +5,61 @@ import Button from "@/components/Button.astro";
 
 import Flower from "@/assets/Icons/flower.astro";
 import Star from "@/assets/Icons/star.astro";
-import GooseYadom from "@/assets/goose_yadom.png";
 import logo from "@/assets/logos/Logo.png";
 import SpeakersImage from "@/components/SpeakersImage.astro";
+import GooseYadom from "@/assets/goose_yadom.png";
 
 const EVENT_DATE = "26 April 2025";
 const EVENT_LOCATION = "KX Building";
 ---
 
-<section class="relative pt-16">
+<section class="relative pt-16 mb-32">
+  <Image
+    src={GooseYadom}
+    alt=""
+    width={800}
+    class="absolute -bottom-80 right-20 w-48"
+  />
   <Flower
     class="absolute -top-48 -right-16 opacity-20 w-[24rem] animate-[spin_10s_linear_infinite_reverse] text-primary-500"
   />
   <Star
     class="absolute -bottom-64 -left-32 opacity-20 w-[24rem] animate-[spin_10s_linear_infinite] text-primary-500"
   />
-  <div class="max-w-3xl m-auto text-center space-y-16">
-    <Image src={logo} alt="The Silent Loud Logo" width={2400} class="w-full z-10" />
-   
+  <div class="max-w-3xl m-auto text-center">
+    <Image
+      src={logo}
+      alt="The Silent Loud Logo"
+      width={2400}
+      class="w-full z-10"
+    />
+    <div data-aos="fade-up" class="mt-16">
+      <div class="flex items-center justify-center gap-2 text-sm text-darkGray">
+        <p
+          class="px-2 py-1 inline-flex items-center justify-center gap-2 bg-foreground rounded-lg border border-primary-500"
+        >
+          <Icon name="mdi:calendar" class="text-primary-500" />
+          {EVENT_DATE}
+        </p>
+        <p
+          class="px-2 py-1 inline-flex items-center justify-center gap-2 bg-foreground rounded-lg border border-primary-500"
+        >
+          <Icon name="mdi:map-marker" class="text-primary-500" />
+          {EVENT_LOCATION}
+        </p>
+      </div>
+      <!-- <SnakeL class="w-16 h-fit text-primary-500" /> -->
+      <!-- <SnakeR class="w-16 h-fit text-primary-500" /> -->
+      <p class="mt-4 text-xl text-darkGray">
+        We all have a superpower, it just needs to be discovered. And that's
+        what we're here for. Join us in this journey of self-discovery and
+        empowerment.
+      </p>
+    </div>
     <div
       data-aos="fade-up"
       data-aos-delay="200"
-      class="flex flex-col-reverse m-auto md:flex-row gap-2 justify-center items-center md:items-start"
+      class="flex flex-col-reverse m-auto md:flex-row gap-2 justify-center items-center md:items-start mt-8"
     >
       <a href="#">
         <Button
@@ -38,6 +71,23 @@ const EVENT_LOCATION = "KX Building";
       <a href="#agenda">
         <Button variant="secondary" text="View agenda" />
       </a>
+    </div>
+    <div
+      data-aos="fade-up"
+      class="max-w-lg m-auto flex justify-between text-4xl mt-12 px-4"
+    >
+      <div class="text-start">
+        <p class="font-semibold">200+</p>
+        <p class="text-xl">Seats</p>
+      </div>
+      <div class="text-start">
+        <p class="font-semibold">12</p>
+        <p class="text-xl">Talks</p>
+      </div>
+      <div class="text-start">
+        <p class="font-semibold">2</p>
+        <p class="text-xl">Shows</p>
+      </div>
     </div>
     <!-- <SpeakersImage /> -->
   </div>

@@ -7,16 +7,24 @@ import ShrimpR from "@/assets/Icons/shrimpR.astro";
 import Container from "@/components/Container.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
 import SpeakerCard from "@/components/SpeakerCard.astro";
+import OrangeFlower from "@/assets/orange_flower.png";
+import { Image } from "astro:assets";
 
 const SPEAKERS_QUERY = `*[_type == "speaker"]|order(_createdAt asc)`;
 const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
 ---
 
-<div class="bg-blu">
+<div class="relative bg-blue overflow-clip">
+  <Image
+    src={OrangeFlower}
+    alt=""
+    width={800}
+    class="absolute bottom-10 -right-20 w-[24rem] md:w-[36rem]"
+  />
   <Container>
     <SectionTitle target="speakers" title="Speakers">
       <h2
-        class="text-4xl md:text-6xl font-semibold font-['Bricolage_Grotesque']"
+        class="text-4xl text-white md:text-6xl font-semibold font-['Bricolage_Grotesque']"
       >
         Meet The Idea Sharers
       </h2>
@@ -36,10 +44,10 @@ const speakers = await sanityClient.fetch<SanityDocument[]>(SPEAKERS_QUERY);
         ))
       }
       <ShrimpL
-        class="absolute -top-40 -left-40 opacity- -z-10 w-64 text-primary-500"
+        class="absolute -top-40 -left-40 opacity- -z-10 w-64 text-purple"
       />
       <ShrimpR
-        class="absolute -bottom-40 -right-32 opacity- -z-10 w-[20rem] text-primary-500"
+        class="absolute -top-40 -right-40 opacity- -z-10 w-64 text-purple"
       />
     </div>
   </Container>
