@@ -2,6 +2,7 @@
 import { urlFor } from "@/utils/sanity";
 import { Icon } from "astro-icon/components";
 import { randomBgColor } from "@/utils/randomColor";
+import moment from "moment-timezone";
 
 interface Props {
   title: string;
@@ -13,7 +14,9 @@ interface Props {
 
 const { title, description, startTime, speaker } = Astro.props;
 
-const currentPath = Astro.url.pathname;
+const startTimeFormatted = moment(startTime)
+  .tz("Asia/Bangkok")
+  .format("HH:mm");
 ---
 
 <div
@@ -22,21 +25,12 @@ const currentPath = Astro.url.pathname;
   <div class="flex items-center gap-2 text-primary-500 font-semibold text-lg">
     <Icon name="mdi:clock-outline" />
     <p>
-      {
-        new Date(startTime).toLocaleTimeString("en-US", {
-          hourCycle: "h24",
-          hour: "2-digit",
-          minute: "2-digit",
-        })
-      }
+      {startTimeFormatted}
     </p>
   </div>
   <div>
     <div>
-      <h2
-        class={"text-xl font-semibold" +
-          (currentPath === "/th" ? "font-['Noto_Serif_Thai']" : "")}
-      >
+      <h2 class="text-xl font-semibold">
         {title}
       </h2>
       <p class="text-slate-500">{description}</p>

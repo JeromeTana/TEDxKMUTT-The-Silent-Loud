@@ -1,0 +1,56 @@
+---
+import { urlFor } from "@/utils/sanity";
+import { Icon } from "astro-icon/components";
+import { randomBgColor } from "@/utils/randomColor";
+
+import moment from "moment-timezone";
+
+interface Props {
+  title: string;
+  description: string;
+  startTime: string;
+  endTime: string;
+  speaker?: { titleEN: string; pfp: string };
+}
+
+const { title, description, startTime, speaker } = Astro.props;
+
+const startTimeFormatted = moment(startTime).tz("Asia/Bangkok").format("HH:mm");
+---
+
+<div
+  class="flex flex-col w-full md:flex-row md:items-center gap-4 md:gap-10 bg-foreground hover:bg-neutral-200 duration-200 border border-black p-4 rounded-2xl md:p-6"
+>
+  <div class="flex items-center gap-2 text-primary-500 font-semibold text-lg">
+    <Icon name="mdi:clock-outline" />
+    <p>
+      {startTimeFormatted}
+    </p>
+  </div>
+  <div>
+    <div>
+      <h2 class="text-xl font-semibold font-['Noto_Serif_Thai']">
+        {title}
+      </h2>
+      <p class="text-slate-500">{description}</p>
+    </div>
+    <div>
+      {
+        speaker && (
+          <div class="flex items-center gap-2 mt-4">
+            {speaker.pfp ? (
+              <img
+                src={urlFor(speaker.pfp)?.width(250).height(250).url()}
+                alt={speaker.titleEN}
+                class={"w-6 h-6 rounded-full border " + randomBgColor()}
+              />
+            ) : (
+              <div class="w-6 h-6 rounded-full bg-neutral-200" />
+            )}
+            <p class="text-sm">{speaker.titleEN}</p>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</div>

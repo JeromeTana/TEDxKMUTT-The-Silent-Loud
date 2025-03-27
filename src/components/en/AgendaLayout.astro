@@ -1,5 +1,5 @@
 ---
-import AgendaItem from "@/components/AgendaItem.astro";
+import AgendaItem from "@/components/en/AgendaItem.astro";
 
 import { Icon } from "astro-icon/components";
 
@@ -8,6 +8,8 @@ import BigStar from "@/assets/Icons/bigStar.astro";
 import Flower from "@/assets/Icons/flower.astro";
 import Star from "@/assets/Icons/star.astro";
 import Lotus from "@/assets/Icons/lotus.astro";
+
+import moment from "moment-timezone";
 
 interface Props {
   title: string;
@@ -18,6 +20,9 @@ interface Props {
 }
 
 const { title, startTime, endTime, talks, index } = Astro.props;
+
+const startTimeFormatted = moment(startTime).tz("Asia/Bangkok").format("HH:mm");
+const endTimeFormatted = moment(endTime).tz("Asia/Bangkok").format("HH:mm");
 ---
 
 <div
@@ -46,21 +51,7 @@ const { title, startTime, endTime, talks, index } = Astro.props;
       </div>
       <p class="text-darkGray text-xl ml-14 mt-2 flex items-center gap-2">
         <Icon name="mdi:clock-outline" />
-        {
-          new Date(startTime).toLocaleTimeString("en-US", {
-            hourCycle: "h24",
-            hour: "2-digit",
-            minute: "2-digit",
-          })
-        }{" "}
-        -{" "}
-        {
-          new Date(endTime).toLocaleTimeString("en-US", {
-            hourCycle: "h24",
-            hour: "2-digit",
-            minute: "2-digit",
-          })
-        }
+        {startTimeFormatted} - {endTimeFormatted}
       </p>
     </div>
   </div>
