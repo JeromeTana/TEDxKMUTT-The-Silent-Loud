@@ -1,0 +1,101 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import Button from "@/components/Button.astro";
+
+import Flower from "@/assets/Icons/flower.astro";
+import Star from "@/assets/Icons/star.astro";
+import logo from "@/assets/logos/Logo.png";
+import GooseYadom from "@/assets/goose_yadom.png";
+import CtaButton from "@/components/th/CtaButton.astro";
+
+const EVENT_DATE = "26 เมษายน 2568";
+const EVENT_LOCATION = "อาคาร KX";
+---
+
+<section class="relative pt-16 mb-32">
+  <Image
+    src={GooseYadom}
+    alt=""
+    width={800}
+    class="absolute -bottom-80 right-20 w-48 hidden md:block"
+  />
+  <Flower
+    class="absolute -top-48 -right-16 opacity-2 w-[24rem] animate-[spin_10s_linear_infinite_reverse] text-yellow"
+  />
+  <Star
+    class="absolute -bottom-64 -left-32 opacity-2 w-[24rem] animate-[spin_10s_linear_infinite] text-purple"
+  />
+  <div class="max-w-3xl m-auto text-center">
+    <Image
+      src={logo}
+      alt="The Silent Loud Logo"
+      width={2400}
+      class="w-full z-10"
+    />
+    <div data-aos="fade-up" class="mt-16">
+      <div class="flex items-center justify-center gap-2 text-sm text-darkGray">
+        <p
+          class="px-2 py-1 inline-flex items-center justify-center gap-2 bg-foreground rounded-lg border border-primary-500"
+        >
+          <Icon name="mdi:calendar" class="text-primary-500" />
+          {EVENT_DATE}
+        </p>
+        <p
+          class="px-2 py-1 inline-flex items-center justify-center gap-2 bg-foreground rounded-lg border border-primary-500"
+        >
+          <Icon name="mdi:map-marker" class="text-primary-500" />
+          {EVENT_LOCATION}
+        </p>
+      </div>
+      <!-- <SnakeL class="w-16 h-fit text-primary-500" /> -->
+      <!-- <SnakeR class="w-16 h-fit text-primary-500" /> -->
+      <p class="mt-4 text-xl text-darkGray">
+        เราทุกคนมีพลังพิเศษ แต่มันต้องการให้ค้นพบ และนั่นคือเหตุผลที่เรามาที่นี่
+      </p>
+    </div>
+    <div
+      data-aos="fade-up"
+      data-aos-delay="200"
+      class="flex flex-col-reverse m-auto md:flex-row gap-2 justify-center items-center md:items-start mt-8"
+    >
+      <CtaButton />
+      <a href="#agenda">
+        <Button variant="secondary" text="ดูตารางรายการ" />
+      </a>
+    </div>
+    <div
+      data-aos="fade-up"
+      class="max-w-lg m-auto flex justify-between text-4xl mt-12 px-4"
+    >
+      <div class="text-start">
+        <p class="font-semibold">200+</p>
+        <p class="text-xl">ที่นั่ง</p>
+      </div>
+      <div class="text-start">
+        <p class="font-semibold">12</p>
+        <p class="text-xl">ทอล์ค</p>
+      </div>
+      <div class="text-start">
+        <p class="font-semibold">2</p>
+        <p class="text-xl">การแสดง</p>
+      </div>
+    </div>
+    <!-- <SpeakersImage /> -->
+  </div>
+  <!-- <div class="relative p-4">
+    <div
+      class="relative max-w-screen-2xl m-auto aspect-video bg-foreground border border-black rounded-3xl mt-16"
+    >
+      <Image
+        src={GooseYadom}
+        alt=""
+        width={800}
+        class="absolute hidden md:block -top-40 right-32 -z-10 w-32"
+      />
+    </div>
+    <Star
+      class="absolute -top-20 -left-32 opacity-20 -z-20 w-[24rem] animate-[spin_10s_linear_infinite] text-primary-500"
+    />
+  </div> -->
+</section>

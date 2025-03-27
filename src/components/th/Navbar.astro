@@ -1,0 +1,43 @@
+---
+import Logo from "@/assets/logos/TEDxKMUTT_b.png";
+import NavLink from "@/components/NavLink.astro";
+import Button from "@/components/Button.astro";
+import { Image } from "astro:assets";
+import Strip from "@/assets/strip.png";
+import CtaButton from "./CtaButton.astro";
+---
+
+<div class="sticky top-0 z-50 overflow-x-clip">
+  <Image
+    src={Strip}
+    alt=""
+    width={3000}
+    class="absolute -bottom-2 -right-0 -z-10 w-full scale-125"
+  />
+  <div class="top-0 w-full bg-white shadow-lg">
+    <nav class="relative flex justify-between px-4 py-2 items-center">
+      <a href="/#">
+        <Image
+          id="logo"
+          src={Logo}
+          alt="Logo of TEDxKMUTT"
+          fetchpriority="high"
+          class="w-40"
+        />
+      </a>
+      <ul class="hidden md:flex gap-4 lg:gap-10 text-lg">
+        <NavLink href="#speakers" text="รายชื่อผู้พูด" />
+        <NavLink href="#agenda" text="ตารางรายการ" />
+        <NavLink href="#faqs" text="คำถามที่พบบ่อย" />
+      </ul>
+      <div class="flex gap-2">
+        <div class="hidden md:block">
+          <CtaButton />
+        </div>
+        <a href="/en">
+          <Button variant="secondary" text="TH" iconLeft="mdi:globe" />
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>

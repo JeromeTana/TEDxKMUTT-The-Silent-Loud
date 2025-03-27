@@ -7,12 +7,10 @@ import Flower from "@/assets/Icons/flower.astro";
 import Star from "@/assets/Icons/star.astro";
 import logo from "@/assets/logos/Logo.png";
 import GooseYadom from "@/assets/goose_yadom.png";
-import CtaButton from "@/components/CtaButton.astro";
+import CtaButton from "@/components/en/CtaButton.astro";
 
-const currentPath = Astro.url.pathname;
-
-const EVENT_DATE = currentPath === "/en" ? "26 April 2025" : "26 เมษายน 2568";
-const EVENT_LOCATION = currentPath === "/en" ? "KX Building" : "อาคาร KX";
+const EVENT_DATE = "26 April 2025";
+const EVENT_LOCATION = "KX Building";
 ---
 
 <section class="relative pt-16 mb-32">
@@ -53,13 +51,9 @@ const EVENT_LOCATION = currentPath === "/en" ? "KX Building" : "อาคาร 
       <!-- <SnakeL class="w-16 h-fit text-primary-500" /> -->
       <!-- <SnakeR class="w-16 h-fit text-primary-500" /> -->
       <p class="mt-4 text-xl text-darkGray">
-        {
-          currentPath === "/en"
-            ? `We all have a superpower, it just needs to be discovered. And that's
+        We all have a superpower, it just needs to be discovered. And that's
         what we're here for. Join us in this journey of self-discovery and
-        empowerment.`
-            : `เราทุกคนมีพลังพิเศษ แต่มันต้องการให้ค้นพบ และนั่นคือเหตุผลที่เรามาที่นี่`
-        }
+        empowerment.
       </p>
     </div>
     <div
@@ -69,10 +63,7 @@ const EVENT_LOCATION = currentPath === "/en" ? "KX Building" : "อาคาร 
     >
       <CtaButton />
       <a href="#agenda">
-        <Button
-          variant="secondary"
-          text={currentPath === "/en" ? "View agenda" : "ดูตารางรายการ"}
-        />
+        <Button variant="secondary" text="View agenda" />
       </a>
     </div>
     <div
@@ -81,15 +72,15 @@ const EVENT_LOCATION = currentPath === "/en" ? "KX Building" : "อาคาร 
     >
       <div class="text-start">
         <p class="font-semibold">200+</p>
-        <p class="text-xl">{currentPath === "/en" ? "Seats" : "ที่นั่ง"}</p>
+        <p class="text-xl">Seats</p>
       </div>
       <div class="text-start">
         <p class="font-semibold">12</p>
-        <p class="text-xl">{currentPath === "/en" ? "Talks" : "ทอล์ค"}</p>
+        <p class="text-xl">Talks</p>
       </div>
       <div class="text-start">
         <p class="font-semibold">2</p>
-        <p class="text-xl">{currentPath === "/en" ? "Shows" : "การแสดง"}</p>
+        <p class="text-xl">Shows</p>
       </div>
     </div>
     <!-- <SpeakersImage /> -->

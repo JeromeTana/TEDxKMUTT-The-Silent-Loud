@@ -1,0 +1,73 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import GooseDurian from "@/assets/goose_durian.png";
+import { urlFor } from "@/utils/sanity";
+import { randomBgColor, randomBorderColor } from "@/utils/randomColor";
+
+interface Social {
+  title: string;
+  url: string;
+  icon: string;
+}
+
+interface Props {
+  name: string;
+  title: string;
+  bio: string;
+  image?: string;
+  socials?: Social[];
+}
+
+const { name, title, bio, image, socials } = Astro.props;
+---
+
+<div
+  class="card bg-foreground border border-black flex md:flex-col gap-6 items-start md:items-center md:text-center p-6 rounded-2xl md:rounded-3xl"
+>
+  <div class={`border-2 rounded-full p-1 border-primary-500`}>
+    {
+      image ? (
+        <img
+          src={urlFor(image)?.width(250).height(250).url()}
+          alt=""
+          class={
+            "rounded-full w-24 md:w-36 md:m-auto border border-darkGray bg-background"
+            // + randomBgColor()
+          }
+        />
+      ) : (
+        <Image
+          src={GooseDurian}
+          alt="Goose Durian"
+          width={250}
+          class={
+            "rounded-full w-24 md:w-36 md:m-auto border border-lightGray " +
+            randomBgColor()
+          }
+        />
+      )
+    }
+  </div>
+  <div class="flex flex-col items-start md:items-center gap-1">
+    <div class="mb-4">
+      <h3 class="font-bold text-2xl font-['Noto_Serif_Thai']">
+        {name}
+      </h3>
+      <p class={"text-primary-500"}>{title}</p>
+    </div>
+    <p class="text-darkGray">{bio}</p>
+    <div class="flex justify-center gap-2 text-2xl">
+      {
+        socials?.map((social) => (
+          <a
+            href={social.url}
+            class="button hover:text-primary-500 duration-200"
+          >
+            <Icon name={social.icon}>{social.icon}</Icon>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
